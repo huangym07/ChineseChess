@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CHINESE_CHESS_SOURCES
     ${CMAKE_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_SOURCE_DIR}/src/Game.cpp
 )
 
 set(CHINESE_CHESS_INCLUDE
@@ -18,6 +19,11 @@ set(CHINESE_CHESS_INCLUDE
 
 add_executable(chinese_chess ${CHINESE_CHESS_SOURCES})
 target_include_directories(chinese_chess PRIVATE ${CHINESE_CHESS_INCLUDE})
+
+if (MINGW) 
+    # 静态链接
+    target_link_options(chinese_chess PRIVATE -static)
+endif()
 
 if (NOT CMAKE_BUILD_TYPE) 
     set(CMAKE_BUILD_TYPE Release)
