@@ -9,9 +9,9 @@
 
 class Game {
   private:
-    static std::vector<std::pair<GameOption, std::string>> menu_;
+    static const std::vector<std::pair<GameOption, std::string>> menu_;
     GameContext context_;
-    GameOption menu();
+    GameOption menu() const;
 
   public:
     void start();

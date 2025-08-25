@@ -8,10 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CHINESE_CHESS_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_SOURCE_DIR}/src/Game.cpp
-)
+file(GLOB CHINESE_CHESS_SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+# set(CHINESE_CHESS_SOURCES
+#     ${CMAKE_SOURCE_DIR}/src/main.cpp
+#     ${CMAKE_SOURCE_DIR}/src/Game.cpp
+#     ${CMAKE_SOURCE_DIR}/src/GameModeFactory.cpp
+#     ${CMAKE_SOURCE_DIR}/src/StandardPveMode.cpp
+# )
 
 set(CHINESE_CHESS_INCLUDE
     ${CMAKE_SOURCE_DIR}/include

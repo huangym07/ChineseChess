@@ -1,20 +1,20 @@
 #include "Game.h"
 #include "GameMode.h"
 #include "GameModeFactory.h"
+#include <cassert>
 #include <ios>
 #include <iostream>
 #include <limits>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
-#include <cassert>
 
-std::vector<std::pair<GameOption, std::string>> Game::menu_{
+const std::vector<std::pair<GameOption, std::string>> Game::menu_{
     {GameOption::STANDARD_PvE, "标准象棋人机对战"},
     {GameOption::EXIT, "退出游戏"},
 };
 
-GameOption Game::menu() {
+GameOption Game::menu() const {
     int op = 0;
 
     std::cout << "开始菜单\n";
@@ -43,9 +43,9 @@ void Game::start() {
         std::cout << "已退出游戏\n";
         return;
     }
-    std::unique_ptr<GameMode> game_mode = GameModeFactory::create_mode(op);
+    auto game_mode = GameModeFactory::create_mode(op);
     if (game_mode) {
-        game_mode->start();
+        game_mode->start(context_);
     } else {
         assert(false && "游戏模式创建失败");
         std::cerr << "创建游戏模式时发生未知错误，请联系开发者\n";
