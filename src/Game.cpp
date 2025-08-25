@@ -1,7 +1,9 @@
 #include "Game.h"
 #include "GameMode.h"
 #include "GameModeFactory.h"
+#include <ios>
 #include <iostream>
+#include <limits>
 #include <string>
 #include <vector>
 #include <memory>
@@ -27,6 +29,10 @@ GameOption Game::menu() {
             return menu_[op - 1].first;
         } else {
             std::cout << "输入不合法，请重新选择：";
+            // 清除错误状态
+            std::cin.clear();
+            // 丢弃缓冲区错误内容
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 }
