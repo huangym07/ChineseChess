@@ -1,11 +1,8 @@
 #include "Game.h"
-#include "GameMode.h"
 #include "GameModeFactory.h"
+#include "InputHandler.h"
 #include <cassert>
-#include <ios>
 #include <iostream>
-#include <limits>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -15,26 +12,13 @@ const std::vector<std::pair<GameOption, std::string>> Game::menu_{
 };
 
 GameOption Game::menu() const {
-    int op = 0;
-
     std::cout << "开始菜单\n";
     for (int i = 0; i < menu_.size(); ++i) {
         std::cout << i + 1 << ". " << menu_[i].second << '\n';
     }
-    std::cout << "请输入 1~" << menu_.size() << " 之间的整数来选择：";
 
-    while (true) {
-        if ((std::cin >> op) && op >= 1 && op <= menu_.size()) {
-            std::cout << "您选择了 " << op << ". " << menu_[op - 1].second << '\n';
-            return menu_[op - 1].first;
-        } else {
-            std::cout << "输入不合法，请重新选择：";
-            // 清除错误状态
-            std::cin.clear();
-            // 丢弃缓冲区错误内容
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-    }
+    int op = InputHandler::read_int_range(1, menu_.size());
+    return menu_[op - 1].first;
 }
 
 void Game::start() {
