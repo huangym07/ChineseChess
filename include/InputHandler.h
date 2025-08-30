@@ -1,5 +1,5 @@
-#ifndef __INPUTHANDLER_H__
-#define __INPUTHANDLER_H__
+#ifndef CHINESECHESS_INPUTHANDLER_H
+#define CHINESECHESS_INPUTHANDLER_H
 
 class InputHandler {
   public:
@@ -13,4 +13,4 @@ class InputHandler {
     static int read_int_range(int min, int max);
 };
 
-#endif // __INPUTHANDLER_H__
+#endif // CHINESECHESS_INPUTHANDLER_H

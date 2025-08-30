@@ -1,5 +1,5 @@
-#ifndef __GAME_H__
-#define __GAME_H__
+#ifndef CHINESECHESS_GAME_H
+#define CHINESECHESS_GAME_H
 
 #include "CoreType.h"
 #include "GameContext.h"
@@ -17,4 +17,4 @@ class Game {
     void start();
 };
 
-#endif // __GAME_H__
+#endif // CHINESECHESS_GAME_H

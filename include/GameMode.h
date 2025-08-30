@@ -1,14 +1,19 @@
-#ifndef __GAMEMODE_H__
-#define __GAMEMODE_H__
+#ifndef CHINESECHESS_GAMEMODE_H
+#define CHINESECHESS_GAMEMODE_H
 
-#include "GameContext.h"
+class GameContext;
 
 class GameMode {
   public:
-    virtual void start(GameContext &context) const = 0;
+    virtual void init(GameContext &context) const = 0;
+    virtual void init_players(GameContext &context) const = 0;
+    virtual void init_pieces(GameContext &context) const = 0;
+    virtual void init_board(GameContext &context) const = 0;
+    virtual void init_action(GameContext &context) const = 0;
+
     // TODO
 
     virtual ~GameMode() = default;
 };
 
-#endif // __GAMEMODE_H__
+#endif // CHINESECHESS_GAMEMODE_H

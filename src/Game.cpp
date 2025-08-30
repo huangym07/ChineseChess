@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "GameMode.h"
 #include "GameModeFactory.h"
 #include "InputHandler.h"
 #include <cassert>
@@ -29,7 +30,7 @@ void Game::start() {
     }
     auto game_mode = GameModeFactory::create_mode(op);
     if (game_mode) {
-        game_mode->start(context_);
+        game_mode->init(context_);
     } else {
         assert(false && "游戏模式创建失败");
         std::cerr << "创建游戏模式时发生未知错误，请联系开发者\n";

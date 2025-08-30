@@ -1,5 +1,5 @@
-#ifndef __CORE_TYPE_H__
-#define __CORE_TYPE_H__ 
+#ifndef CHINESECHESS_CORETYPE_H
+#define CHINESECHESS_CORETYPE_H 
 
 struct Position {
     int x, y;
@@ -7,9 +7,16 @@ struct Position {
 
 enum class AttributeType {
     HP, 
-    PHYSICAL_ATK, PHYSICAL_DEF, 
-    MAGIC_ATK, MAGIC_DEF, 
+    PHYSICAL_ATK, 
+    PHYSICAL_DEF, 
+    MAGIC_ATK, 
+    MAGIC_DEF, 
     SPEED,
+};
+enum class AttriOpType{
+    SET,            // 不管有无属性，强制覆盖，不会失败
+    ADD,            // 增加属性，已存在该属性时失败
+    CHANGE,         // 改变属性，属性 += delta，无该属性时失败
 };
 
 enum class PieceType {
@@ -20,6 +27,7 @@ enum class PieceType {
     CHARIOT,        // 车
     CANNON,         // 炮
     SOLDIER,        // 兵/卒
+    UNKNOWN,        // 未知
 };
 
 enum class GameOption {
@@ -36,4 +44,5 @@ enum class PlayerType {
     Human,
     AI,
 };
-#endif // __CORE_TYPE_H__
+
+#endif // CHINESECHESS_CORETYPE_H
