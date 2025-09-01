@@ -5,7 +5,7 @@
 
 class HumanPlayer : public Player {
   public:
-    HumanPlayer(const PlayerInfo &player_info);
+    HumanPlayer(PlayerInfo player_info);
 
     // TODO
 

@@ -4,11 +4,11 @@
 #include "PlayerInfo.h"
 
 class Player {
-  private:
+  protected:
     PlayerInfo player_info_;
 
   public:
-    Player(const PlayerInfo &player_info);
+    Player(PlayerInfo player_info);
 
     // TODO
 

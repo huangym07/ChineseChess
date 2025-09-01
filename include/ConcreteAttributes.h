@@ -10,9 +10,9 @@ class ConcreteAttributes : public PieceAttributes {
     std::map<AttributeType, int> attributes_;
   public:
     ConcreteAttributes(std::map<AttributeType, int> &&attributes);
-    std::optional<int> get_attribute(const AttributeType &type) const;
-    bool modify_attribute(const AttriOpType &op, const AttributeType &attri_type, int value);
-    void remove_attribute(const AttributeType &type);
+    std::optional<int> get_attribute(AttributeType type) const override;
+    bool modify_attribute(AttriOpType op, AttributeType attri_type, int value) override;
+    void remove_attribute(AttributeType type) override;
 };
 
 #endif // CHINESECHESS_CONCRETEATTRIBUTES_H

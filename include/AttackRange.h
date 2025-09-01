@@ -2,12 +2,15 @@
 #define CHINESECHESS_ATTACKRANGE_H
 
 #include "CoreType.h"
+#include "GameContext.h"
 #include <vector>
 
 class AttackRange {
-  public:
-    virtual std::vector<Position> get_range(const Position &pos) const = 0;
+  protected:
     virtual ~AttackRange() = default;
+
+  public:
+    virtual std::vector<Position> get_range(Position pos, const ChessBoard &board) const = 0;
 };
 
 #endif // CHINESECHESS_ATTACKRANGE_H

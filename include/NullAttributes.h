@@ -7,9 +7,9 @@
 
 class NullAttributes : public PieceAttributes {
   public:
-    std::optional<int> get_attribute(const AttributeType &type) const { return std::nullopt; }
-    bool modify_attribute(const AttriOpType &op, const AttributeType &attri_type, int value) { return false; }
-    void remove_attribute(const AttributeType &type) {}
+    std::optional<int> get_attribute(AttributeType type) const override { return std::nullopt; }
+    bool modify_attribute(AttriOpType op, AttributeType attri_type, int value) override { return false; }
+    void remove_attribute(AttributeType type) override {}
 };
 
 #endif // CHINESECHESS_NULLATTRIBUTES_H

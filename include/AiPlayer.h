@@ -2,6 +2,7 @@
 #define CHINESECHESS_AIPLAYER_H
 
 #include "Player.h"
+#include "PlayerInfo.h"
 
 class AiPlayer : public Player {
   private:
@@ -10,7 +11,7 @@ class AiPlayer : public Player {
     int search_depth_ = 6;
 
   public:
-    AiPlayer(const PlayerInfo &player_info);
+    AiPlayer(PlayerInfo player_info);
 
     // TODO
 
