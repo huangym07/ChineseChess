@@ -1,7 +1,7 @@
-#ifndef CHINESECHESS_PLAYER_H
-#define CHINESECHESS_PLAYER_H
+#ifndef CHINESECHESS_PLAYER_PLAYER_H
+#define CHINESECHESS_PLAYER_PLAYER_H
 
-#include "PlayerInfo.h"
+#include "Player/PlayerInfo.h"
 
 class Player {
   protected:
@@ -15,4 +15,4 @@ class Player {
     virtual ~Player() = default;
 };
 
-#endif // CHINESECHESS_PLAYER_H
+#endif // CHINESECHESS_PLAYER_PLAYER_H

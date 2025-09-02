@@ -1,7 +1,7 @@
-#ifndef CHINESECHESS_GAMEMODEFACTORY_H
-#define CHINESECHESS_GAMEMODEFACTORY_H
+#ifndef CHINESECHESS_GAMEMODE_GAMEMODEFACTORY_H
+#define CHINESECHESS_GAMEMODE_GAMEMODEFACTORY_H
 
-#include "CoreType.h"
+#include "Common/CoreType.h"
 #include <cassert>
 #include <functional>
 #include <map>
@@ -17,4 +17,4 @@ class GameModeFactory {
     static std::unique_ptr<GameMode> create_mode(GameOption op);
 };
 
-#endif // CHINESECHESS_GAMEMODEFACTORY_H
+#endif // CHINESECHESS_GAMEMODE_GAMEMODEFACTORY_H

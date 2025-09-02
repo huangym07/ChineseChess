@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include "CommandManager.h"
+#include "Command/CommandManager.h"
 
 class ChessPiece;
 class Player;

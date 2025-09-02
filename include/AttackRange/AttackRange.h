@@ -1,7 +1,7 @@
-#ifndef CHINESECHESS_ATTACKRANGE_H
-#define CHINESECHESS_ATTACKRANGE_H
+#ifndef CHINESECHESS_ATTACKRANGE_ATTACKRANGE_H
+#define CHINESECHESS_ATTACKRANGE_ATTACKRANGE_H
 
-#include "CoreType.h"
+#include "Common/CoreType.h"
 #include "GameContext.h"
 #include <vector>
 
@@ -13,4 +13,4 @@ class AttackRange {
     virtual std::vector<Position> get_range(Position pos, const ChessBoard &board) const = 0;
 };
 
-#endif // CHINESECHESS_ATTACKRANGE_H
+#endif // CHINESECHESS_ATTACKRANGE_ATTACKRANGE_H

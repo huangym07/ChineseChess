@@ -1,5 +1,5 @@
-#include "GameModeFactory.h"
-#include "StandardPveMode.h"
+#include "GameMode/GameModeFactory.h"
+#include "GameMode/StandardPveMode.h"
 
 const std::map<GameOption, std::function<std::unique_ptr<GameMode>()>> GameModeFactory::creators_{
     {GameOption::STANDARD_PvE, []() { return std::make_unique<StandardPveMode>(); }},

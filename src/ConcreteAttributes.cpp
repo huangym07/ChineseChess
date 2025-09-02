@@ -1,9 +1,9 @@
-#include "ConcreteAttributes.h"
-#include "CoreType.h"
+#include "PieceAttributes/ConcreteAttributes.h"
+#include "Common/CoreType.h"
 #include <cassert>
 #include <iostream>
 
-ConcreteAttributes::ConcreteAttributes(std::map<AttributeType, int> &&attributes)
+ConcreteAttributes::ConcreteAttributes(std::map<AttributeType, int> attributes)
     : attributes_(std::move(attributes)) {}
 
 std::optional<int> ConcreteAttributes::get_attribute(AttributeType type) const {

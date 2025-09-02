@@ -1,7 +1,7 @@
 #ifndef CHINESECHESS_GAME_H
 #define CHINESECHESS_GAME_H
 
-#include "CoreType.h"
+#include "Common/CoreType.h"
 #include "GameContext.h"
 #include <string>
 #include <utility>

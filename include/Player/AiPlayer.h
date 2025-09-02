@@ -1,8 +1,8 @@
-#ifndef CHINESECHESS_AIPLAYER_H
-#define CHINESECHESS_AIPLAYER_H
+#ifndef CHINESECHESS_PLAYER_AIPLAYER_H
+#define CHINESECHESS_PLAYER_AIPLAYER_H
 
-#include "Player.h"
-#include "PlayerInfo.h"
+#include "Player/Player.h"
+#include "Player/PlayerInfo.h"
 
 class AiPlayer : public Player {
   private:
@@ -23,4 +23,4 @@ class AiPlayer : public Player {
     ~AiPlayer() = default;
 };
 
-#endif // CHINESECHESS_AIPLAYER_H
+#endif // CHINESECHESS_PLAYER_AIPLAYER_H

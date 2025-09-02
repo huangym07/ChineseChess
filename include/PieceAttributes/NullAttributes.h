@@ -1,8 +1,8 @@
-#ifndef CHINESECHESS_NULLATTRIBUTES_H
-#define CHINESECHESS_NULLATTRIBUTES_H
+#ifndef CHINESECHESS_PIECEATTRIBUTES_NULLATTRIBUTES_H
+#define CHINESECHESS_PIECEATTRIBUTES_NULLATTRIBUTES_H
 
-#include "CoreType.h"
-#include "PieceAttributes.h"
+#include "Common/CoreType.h"
+#include "PieceAttributes/PieceAttributes.h"
 #include <optional>
 
 class NullAttributes : public PieceAttributes {
@@ -12,4 +12,4 @@ class NullAttributes : public PieceAttributes {
     void remove_attribute(AttributeType type) override {}
 };
 
-#endif // CHINESECHESS_NULLATTRIBUTES_H
+#endif // CHINESECHESS_PIECEATTRIBUTES_NULLATTRIBUTES_H

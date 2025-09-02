@@ -1,7 +1,7 @@
 #include "Game.h"
-#include "GameMode.h"
-#include "GameModeFactory.h"
-#include "InputHandler.h"
+#include "GameMode/GameMode.h"
+#include "GameMode/GameModeFactory.h"
+#include "Common/InputHandler.h"
 #include <cassert>
 #include <iostream>
 #include <string>

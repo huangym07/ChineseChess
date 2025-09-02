@@ -1,9 +1,9 @@
-#ifndef CHINESECHESS_STANDARDPVEMODE_H
-#define CHINESECHESS_STANDARDPVEMODE_H
+#ifndef CHINESECHESS_GAMEMODE_STANDARDPVEMODE_H
+#define CHINESECHESS_GAMEMODE_STANDARDPVEMODE_H
 
-#include "AiPlayer.h"
+#include "Player/AiPlayer.h"
 #include "GameContext.h"
-#include "GameMode.h"
+#include "GameMode/GameMode.h"
 
 class StandardPveMode : public GameMode {
   public:
@@ -20,4 +20,4 @@ class StandardPveMode : public GameMode {
     void set_difficulty(AiPlayer &ai_player) const;
 };
 
-#endif // CHINESECHESS_STANDARDPVEMODE_H
+#endif // CHINESECHESS_GAMEMODE_STANDARDPVEMODE_H

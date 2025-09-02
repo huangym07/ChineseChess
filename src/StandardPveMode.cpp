@@ -1,10 +1,10 @@
-#include "StandardPveMode.h"
-#include "AiPlayer.h"
-#include "CoreType.h"
+#include "GameMode/StandardPveMode.h"
+#include "Player/AiPlayer.h"
+#include "Common/CoreType.h"
 #include "GameContext.h"
-#include "HumanPlayer.h"
-#include "InputHandler.h"
-#include "PlayerInfo.h"
+#include "Player/HumanPlayer.h"
+#include "Common/InputHandler.h"
+#include "Player/PlayerInfo.h"
 #include <cassert>
 #include <ctime>
 #include <iostream>

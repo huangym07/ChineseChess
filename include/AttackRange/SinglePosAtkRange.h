@@ -1,8 +1,8 @@
-#ifndef CHINESECHESS_SINGLEPOSATKRANGE_H
-#define CHINESECHESS_SINGLEPOSATKRANGE_H
+#ifndef CHINESECHESS_ATTACKRANGE_SINGLEPOSATKRANGE_H
+#define CHINESECHESS_ATTACKRANGE_SINGLEPOSATKRANGE_H
 
-#include "AttackRange.h"
-#include "CoreType.h"
+#include "AttackRange/AttackRange.h"
+#include "Common/CoreType.h"
 
 class SinglePosAtkRange : public AttackRange {
   private:
@@ -27,4 +27,4 @@ class SinglePosAtkRange : public AttackRange {
     SinglePosAtkRange &operator=(SinglePosAtkRange &&) = delete;
 };
 
-#endif // CHINESECHESS_SINGLEPOSATKRANGE_H
+#endif // CHINESECHESS_ATTACKRANGE_SINGLEPOSATKRANGE_H

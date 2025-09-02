@@ -1,5 +1,5 @@
-#ifndef CHINESECHESS_GAMEMODE_H
-#define CHINESECHESS_GAMEMODE_H
+#ifndef CHINESECHESS_GAMEMODE_GAMEMODE_H
+#define CHINESECHESS_GAMEMODE_GAMEMODE_H
 
 class GameContext;
 
@@ -16,4 +16,4 @@ class GameMode {
     virtual ~GameMode() = default;
 };
 
-#endif // CHINESECHESS_GAMEMODE_H
+#endif // CHINESECHESS_GAMEMODE_GAMEMODE_H

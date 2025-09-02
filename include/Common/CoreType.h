@@ -1,5 +1,5 @@
-#ifndef CHINESECHESS_CORETYPE_H
-#define CHINESECHESS_CORETYPE_H 
+#ifndef CHINESECHESS_COMMON_CORETYPE_H
+#define CHINESECHESS_COMMON_CORETYPE_H 
 
 struct Position {
     int x, y;
@@ -45,4 +45,4 @@ enum class PlayerType {
     AI,
 };
 
-#endif // CHINESECHESS_CORETYPE_H
+#endif // CHINESECHESS_COMMON_CORETYPE_H

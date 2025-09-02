@@ -1,4 +1,4 @@
-#include "AiPlayer.h"
+#include "Player/AiPlayer.h"
 
 AiPlayer::AiPlayer(PlayerInfo player_info) : Player(player_info) {}
 

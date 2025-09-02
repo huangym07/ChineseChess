@@ -1,7 +1,7 @@
-#ifndef CHINESECHESS_PIECEATTRIBUTES_H
-#define CHINESECHESS_PIECEATTRIBUTES_H
+#ifndef CHINESECHESS_PIECEATTRIBUTES_PIECEATTRIBUTES_H
+#define CHINESECHESS_PIECEATTRIBUTES_PIECEATTRIBUTES_H
 
-#include "CoreType.h"
+#include "Common/CoreType.h"
 #include <optional>
 
 class PieceAttributes {
@@ -13,4 +13,4 @@ class PieceAttributes {
     virtual ~PieceAttributes() = default;
 };
 
-#endif // CHINESECHESS_PIECEATTRIBUTES_H
+#endif // CHINESECHESS_PIECEATTRIBUTES_PIECEATTRIBUTES_H

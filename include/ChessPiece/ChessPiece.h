@@ -1,10 +1,10 @@
-#ifndef CHINESECHESS_CHESSPIECE_H
-#define CHINESECHESS_CHESSPIECE_H
+#ifndef CHINESECHESS_CHESSPIECE_CHESSPIECE_H
+#define CHINESECHESS_CHESSPIECE_CHESSPIECE_H
 
-#include "AttackRange.h"
-#include "CoreType.h"
+#include "AttackRange/AttackRange.h"
+#include "Common/CoreType.h"
 #include "GameContext.h"
-#include "PieceAttributes.h"
+#include "PieceAttributes/PieceAttributes.h"
 #include <cassert>
 #include <memory>
 #include <optional>
@@ -56,4 +56,4 @@ class ChessPiece {
     virtual ~ChessPiece() = default;
 };
 
-#endif // CHINESECHESS_CHESSPIECE_H
+#endif // CHINESECHESS_CHESSPIECE_CHESSPIECE_H

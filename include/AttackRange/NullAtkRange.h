@@ -1,8 +1,8 @@
-#ifndef CHINESECHESS_NULLATKRANGE_H
-#define CHINESECHESS_NULLATKRANGE_H
+#ifndef CHINESECHESS_ATTACKRANGE_NULLATKRANGE_H
+#define CHINESECHESS_ATTACKRANGE_NULLATKRANGE_H
 
-#include "AttackRange.h"
-#include "CoreType.h"
+#include "AttackRange/AttackRange.h"
+#include "Common/CoreType.h"
 #include "GameContext.h"
 #include <vector>
 
@@ -29,4 +29,4 @@ class NullAtkRange : public AttackRange {
     NullAtkRange &operator=(NullAtkRange &&) = delete;
 };
 
-#endif // CHINESECHESS_NULLATKRANGE_H
+#endif // CHINESECHESS_ATTACKRANGE_NULLATKRANGE_H
