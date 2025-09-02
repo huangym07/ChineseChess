@@ -1,12 +1,12 @@
-#include "PieceAttributes/ConcreteAttributes.h"
+#include "PieceAttributes.h"
 #include "Common/CoreType.h"
 #include <cassert>
 #include <iostream>
 
-ConcreteAttributes::ConcreteAttributes(std::map<AttributeType, int> attributes)
+PieceAttributes::PieceAttributes(std::map<AttributeType, int> attributes)
     : attributes_(std::move(attributes)) {}
 
-std::optional<int> ConcreteAttributes::get_attribute(AttributeType type) const {
+std::optional<int> PieceAttributes::get_attribute(AttributeType type) const {
     auto it = attributes_.find(type);
 
     if (it == attributes_.end())
@@ -15,7 +15,7 @@ std::optional<int> ConcreteAttributes::get_attribute(AttributeType type) const {
     return it->second;
 }
 
-bool ConcreteAttributes::modify_attribute(AttriOpType op, AttributeType attri_type, int value) {
+bool PieceAttributes::modify_attribute(AttriOpType op, AttributeType attri_type, int value) {
     switch (op) {
     case AttriOpType::SET: {
         attributes_[attri_type] = value;
@@ -45,4 +45,4 @@ bool ConcreteAttributes::modify_attribute(AttriOpType op, AttributeType attri_ty
     return true;
 }
 
-void ConcreteAttributes::remove_attribute(AttributeType type) { attributes_.erase(type); }
+void PieceAttributes::remove_attribute(AttributeType type) { attributes_.erase(type); }

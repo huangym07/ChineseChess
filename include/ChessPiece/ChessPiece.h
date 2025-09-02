@@ -4,7 +4,7 @@
 #include "AttackRange/AttackRange.h"
 #include "Common/CoreType.h"
 #include "GameContext.h"
-#include "PieceAttributes/PieceAttributes.h"
+#include "PieceAttributes.h"
 #include <cassert>
 #include <memory>
 #include <optional>
@@ -21,9 +21,10 @@ class ChessPiece {
 
   protected:
     ChessPiece(PieceType piece_type, SideTag side_tag, Position pos, std::string display_info,
+               std::unique_ptr<PieceAttributes> attributes = nullptr,
                const AttackRange *attack_range = nullptr)
         : piece_type_(piece_type), side_tag_(side_tag), pos_(pos),
-          display_info_(std::move(display_info)), attributes_(nullptr),
+          display_info_(std::move(display_info)), attributes_(std::move(attributes)),
           attack_range_(attack_range) {}
 
   public:
