@@ -1,13 +1,14 @@
-#ifndef CHINESECHESS_CHESSPIECE_SOLDIER_H
-#define CHINESECHESS_CHESSPIECE_SOLDIER_H
+#ifndef CHINESECHESS_CHESSPIECE_GENERAL_H
+#define CHINESECHESS_CHESSPIECE_GENERAL_H
 
 #include "AttackRange/SinglePosAtkRange.h"
-#include "ChessPiece/ChessPiece.h"
+#include "ChessPiece.h"
+#include "Common/CoreType.h"
 
-class Soldier : public ChessPiece {
+class General : public ChessPiece {
   public:
-    Soldier(SideTag side_tag, Position pos)
-        : ChessPiece(PieceType::SOLDIER, side_tag, pos, side_tag == SideTag::RED ? "兵" : "卒",
+    General(SideTag side_tag, Position pos)
+        : ChessPiece(PieceType::GENERAL, side_tag, pos, SideTag::RED == side_tag ? "帅" : "将",
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 
@@ -16,4 +17,4 @@ class Soldier : public ChessPiece {
     bool special_check_move(Position target, const ChessBoard &board) const override;
 };
 
-#endif // CHINESECHESS_CHESSPIECE_SOLDIER_H
+#endif // CHINESECHESS_CHESSPIECE_GENERAL_H

@@ -54,6 +54,10 @@ class ChessPiece {
         return attack_range_ ? attack_range_->get_range(pos, board) : std::vector<Position>{};
     }
 
+    std::vector<ChessPiece *> move_attack(ChessBoard &board, Position target);
+    void undo_attack_move(ChessBoard &board, Position src, std::vector<Position> captured_pieces);
+    bool cap_capture(const ChessBoard &board, ChessPiece *target_piece) const;
+
     virtual ~ChessPiece() = default;
 };
 
