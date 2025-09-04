@@ -8,7 +8,9 @@
 class General : public ChessPiece {
   public:
     General(SideTag side_tag, Position pos)
-        : ChessPiece(PieceType::GENERAL, side_tag, pos, SideTag::RED == side_tag ? "帅" : "将",
+        : ChessPiece(PieceType::GENERAL, side_tag, pos,
+                     SideTag::RED == side_tag ? AnsiColor::colored_text(AnsiColor::RED, "帅")
+                                              : AnsiColor::colored_text(AnsiColor::BLACK, "将"),
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 

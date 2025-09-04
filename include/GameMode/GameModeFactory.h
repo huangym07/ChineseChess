@@ -11,7 +11,8 @@ class GameMode;
 
 class GameModeFactory {
   private:
-    static const std::map<GameOption, std::function<std::unique_ptr<GameMode>()>> creators_;
+    using CreatorFunc = std::function<std::unique_ptr<GameMode>()>;
+    static const std::map<GameOption, CreatorFunc> creators_;
 
   public:
     static std::unique_ptr<GameMode> create_mode(GameOption op);

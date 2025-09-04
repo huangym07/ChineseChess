@@ -3,11 +3,14 @@
 
 #include "AttackRange/SinglePosAtkRange.h"
 #include "ChessPiece.h"
+#include "Common/CoreType.h"
 
 class Horse : public ChessPiece {
   public:
     Horse(SideTag side_tag, Position pos)
-        : ChessPiece(PieceType::HORSE, side_tag, pos, "马",
+        : ChessPiece(PieceType::HORSE, side_tag, pos,
+                     SideTag::RED == side_tag ? AnsiColor::colored_text(AnsiColor::RED, "马")
+                                              : AnsiColor::colored_text(AnsiColor::BLACK, "马"),
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 

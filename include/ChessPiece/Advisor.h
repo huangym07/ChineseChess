@@ -8,7 +8,9 @@
 class Advisor : public ChessPiece {
   public:
     Advisor(SideTag side_tag, Position pos)
-        : ChessPiece(PieceType::ADVISOR, side_tag, pos, SideTag::RED == side_tag ? "仕" : "士",
+        : ChessPiece(PieceType::ADVISOR, side_tag, pos,
+                     SideTag::RED == side_tag ? AnsiColor::colored_text(AnsiColor::RED, "仕")
+                                              : AnsiColor::colored_text(AnsiColor::BLACK, "士"),
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 

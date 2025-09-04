@@ -1,7 +1,7 @@
 #include "Game.h"
+#include "Common/InputHandler.h"
 #include "GameMode/GameMode.h"
 #include "GameMode/GameModeFactory.h"
-#include "Common/InputHandler.h"
 #include <cassert>
 #include <iostream>
 #include <string>
@@ -28,11 +28,8 @@ void Game::start() {
         std::cout << "已退出游戏\n";
         return;
     }
+
+    // 经上面的 GameOption::EXIT 过滤，传入的 op 一定合法，工厂必返回有效实例
     auto game_mode = GameModeFactory::create_mode(op);
-    if (game_mode) {
-        game_mode->init(context_);
-    } else {
-        assert(false && "游戏模式创建失败");
-        std::cerr << "创建游戏模式时发生未知错误，请联系开发者\n";
-    }
+    game_mode->init(context_); // 无需对 game_mode 进行 nullptr 检查
 }

@@ -8,7 +8,9 @@
 class Elephant : public ChessPiece {
   public:
     Elephant(SideTag side_tag, Position pos)
-        : ChessPiece(PieceType::ELEPHANT, side_tag, pos, side_tag == SideTag::RED ? "相" : "象",
+        : ChessPiece(PieceType::ELEPHANT, side_tag, pos,
+                     SideTag::RED == side_tag ? AnsiColor::colored_text(AnsiColor::RED, "相")
+                                              : AnsiColor::colored_text(AnsiColor::BLACK, "象"),
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 

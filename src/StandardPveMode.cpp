@@ -12,7 +12,7 @@
 #include <random>
 
 // 初始化玩家：确定阵营，设置难度
-// 初始化棋子 TODONEXT：去写 ChessPiece 子类
+// 初始化棋子 TODONEXT：实现棋子工厂
 // 初始化地图
 // 初始化流程
 // TODO 调用 context.action.run_game() 开始游戏流程
