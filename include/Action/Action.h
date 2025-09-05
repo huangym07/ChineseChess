@@ -1,0 +1,8 @@
+#ifndef CHINESECHESS_ACTION_ACTION_H
+#define CHINESECHESS_ACTION_ACTION_H
+
+class Action {
+    // TODO
+};
+
+#endif // CHINESECHESS_ACTION_ACTION_H
