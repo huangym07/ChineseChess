@@ -1,14 +1,13 @@
 #include "GameMode/StandardPveMode.h"
-#include "Action/TraditionalAction.h"
-#include "ChessBoard.h"
-#include "ChessPiece/PieceFactory.h"
-#include "ChessPiece/StandardChineseChessConfig.h"
-#include "Common/CoreType.h"
 #include "Common/InputHandler.h"
 #include "GameContext.h"
 #include "Player/AiPlayer.h"
 #include "Player/HumanPlayer.h"
-#include "Player/PlayerInfo.h"
+#include "ChessBoard.h"
+#include "ChessPiece/StandardChineseChessConfig.h"
+#include "ChessPiece/PieceFactory.h"
+#include "Action/TraditionalAction.h"
+
 #include <cassert>
 #include <ctime>
 #include <iostream>
@@ -25,6 +24,12 @@ void StandardPveMode::init(GameContext &context) const {
     init_pieces(context);
     init_board(context);
     init_action(context);
+
+
+    // TEST 打印棋盘，测试下棋子棋盘初始化
+    context.board->show_board();
+    assert(false && "TEST OVER");
+    // TEST
 }
 
 void StandardPveMode::init_players(GameContext &context) const {
@@ -37,6 +42,8 @@ void StandardPveMode::init_players(GameContext &context) const {
         std::uniform_int_distribution<int> dist(1, 2);
         op = dist(engine);
     }
+
+    std::cout << "您当前是 " << (op == 1 ? "红" : "黑") << "方 玩家\n";
 
     // StandardPveMode 游戏模式中，
     // context.players 中先红方，后黑方
@@ -63,7 +70,10 @@ void StandardPveMode::init_players(GameContext &context) const {
 void StandardPveMode::set_difficulty(AiPlayer &ai_player) const {
     std::cout << "选择游戏难度\n";
     int depth = InputHandler::read_int_range(AiPlayer::min_depth(), AiPlayer::max_depth());
+
     ai_player.set_depth(depth);
+
+    std::cout << "您选择了游戏难度" << depth << "，祝您游戏愉快！\n";
 }
 
 void StandardPveMode::init_pieces(GameContext &context) const {

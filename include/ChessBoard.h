@@ -17,12 +17,18 @@ class ChessBoard {
   public:
     ChessBoard(int width, int height, const std::vector<std::unique_ptr<ChessPiece>> &pieces);
 
-    // TODO
+    // 返回棋盘的宽高
+    std::pair<int, int> size() const { return std::make_pair(width_, height_); }
 
     bool set_piece(Position pos, ChessPiece *piece);
+    ChessPiece *get_piece(Position pos) const;
+    const std::vector<ChessPiece*> &get_pieces(SideTag side_tag) const;
+
     bool is_out_of_board(Position pos) const {
         return pos.x < 0 || pos.x >= width_ || pos.y < 0 || pos.y >= height_;
     }
+
+    void show_board() const;
 };
 
 #endif // CHINESECHESS_CHESSBOARD_H

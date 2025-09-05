@@ -2,8 +2,9 @@
 #define CHINESECHESS_ATTACKRANGE_ATTACKRANGE_H
 
 #include "Common/CoreType.h"
-#include "GameContext.h"
 #include <vector>
+
+class ChessBoard;
 
 class AttackRange {
   protected:

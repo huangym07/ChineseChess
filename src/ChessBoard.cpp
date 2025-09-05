@@ -31,3 +31,29 @@ bool ChessBoard::set_piece(Position pos, ChessPiece *piece) {
 
     return true;
 }
+
+ChessPiece *ChessBoard::get_piece(Position pos) const {
+    return is_out_of_board(pos) ? nullptr : board_[pos.y][pos.x];
+}
+
+const std::vector<ChessPiece *> &ChessBoard::get_pieces(SideTag side_tag) const {
+    // 运行时调用 get_pieces(side) 传入的阵营，是当前棋局实际包含的阵营
+    assert(pieces_.end() != pieces_.find(side_tag) &&
+           "根据阵营获取棋子指针序列，不应传入未初始化的随机枚举值或是本次棋局中没有相关棋子出现的"
+           "阵营");
+
+    return pieces_.find(side_tag)->second;
+}
+
+void ChessBoard::show_board() const {
+    for (int i = 0; i < height_; ++i) {
+        for (int j = 0; j < width_; ++j) {
+            std::cout << (nullptr == board_[i][j] ? AnsiColor::colored_text(AnsiColor::RED, "  ") : board_[i][j]->display_info()) << "  ";
+        }
+        std::cout << "\n\n";
+        if ((height_ - 1) / 2 == i) {
+            // （(2 * width_ - 1) * 2 - 8) / 2 是楚河汉界居中且两侧空格数均等时，其左侧的空格数
+            std::cout << std::string(((2 * width_ - 1) * 2 - 8) / 2, ' ')  << "楚河汉界\n\n";
+        }
+    }
+}

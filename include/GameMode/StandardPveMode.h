@@ -1,9 +1,9 @@
 #ifndef CHINESECHESS_GAMEMODE_STANDARDPVEMODE_H
 #define CHINESECHESS_GAMEMODE_STANDARDPVEMODE_H
 
-#include "Player/AiPlayer.h"
-#include "GameContext.h"
 #include "GameMode/GameMode.h"
+
+class AiPlayer;
 
 class StandardPveMode : public GameMode {
   public:

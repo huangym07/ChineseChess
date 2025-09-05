@@ -3,7 +3,6 @@
 
 #include "AttackRange/AttackRange.h"
 #include "Common/CoreType.h"
-#include "GameContext.h"
 #include "PieceAttributes.h"
 #include <cassert>
 #include <memory>
@@ -46,9 +45,10 @@ class ChessPiece {
             attributes_->remove_attribute(type);
     }
 
-    virtual std::vector<Position> basic_moves_gen(const ChessBoard &board) const = 0;
-    virtual bool basic_check_move(Position target, const ChessBoard &board) const = 0;
-    virtual bool special_check_move(Position target, const ChessBoard &board) const = 0;
+    // TODO
+    // virtual std::vector<Position> basic_moves_gen(const ChessBoard &board) const = 0;
+    // virtual bool basic_check_move(Position target, const ChessBoard &board) const = 0;
+    // virtual bool special_check_move(Position target, const ChessBoard &board) const = 0;
 
     std::vector<Position> get_atk_range(Position pos, const ChessBoard &board) const {
         return attack_range_ ? attack_range_->get_range(pos, board) : std::vector<Position>{};

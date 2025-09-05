@@ -2,7 +2,6 @@
 #define CHINESECHESS_PLAYER_AIPLAYER_H
 
 #include "Player/Player.h"
-#include "Player/PlayerInfo.h"
 
 class AiPlayer : public Player {
   private:

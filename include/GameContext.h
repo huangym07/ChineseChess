@@ -3,12 +3,11 @@
 
 #include <memory>
 #include <vector>
+#include "ChessPiece/ChessPiece.h"
+#include "Player/Player.h"
+#include "ChessBoard.h"
 #include "Command/CommandManager.h"
-
-class ChessPiece;
-class Player;
-class ChessBoard;
-class Action;
+#include "Action/Action.h"
 
 struct GameContext {
     std::vector<std::unique_ptr<ChessPiece>> pieces;

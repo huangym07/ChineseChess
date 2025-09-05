@@ -2,10 +2,11 @@
 #define CHINESECHESS_PIECEFACTORY_H
 
 #include "Common/CoreType.h"
-#include "GameContext.h"
 #include <functional>
 #include <map>
 #include <memory>
+
+class ChessPiece;
 
 class PieceFactory {
   private:
