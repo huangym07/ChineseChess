@@ -1,10 +1,12 @@
 #include "GameMode/StandardPveMode.h"
-#include "Player/AiPlayer.h"
+#include "ChessPiece/PieceFactory.h"
 #include "Common/CoreType.h"
-#include "GameContext.h"
-#include "Player/HumanPlayer.h"
 #include "Common/InputHandler.h"
+#include "GameContext.h"
+#include "Player/AiPlayer.h"
+#include "Player/HumanPlayer.h"
 #include "Player/PlayerInfo.h"
+#include "ChessPiece/StandardChineseChessConfig.h"
 #include <cassert>
 #include <ctime>
 #include <iostream>
@@ -12,7 +14,7 @@
 #include <random>
 
 // 初始化玩家：确定阵营，设置难度
-// 初始化棋子 TODONEXT：实现棋子工厂
+// 初始化棋子 TODONEXT：实现 init_board()，需要先实现 ChessBoard 类
 // 初始化地图
 // 初始化流程
 // TODO 调用 context.action.run_game() 开始游戏流程
@@ -42,14 +44,14 @@ void StandardPveMode::init_players(GameContext &context) const {
         context.players.push_back(
             std::make_unique<AiPlayer>(PlayerInfo{PlayerType::AI, SideTag::BLACK}));
 
-        assert(nullptr != dynamic_cast<AiPlayer*>(context.players.back().get()));
-        set_difficulty(*static_cast<AiPlayer*>(context.players.back().get()));
+        assert(nullptr != dynamic_cast<AiPlayer *>(context.players.back().get()));
+        set_difficulty(*static_cast<AiPlayer *>(context.players.back().get()));
     } else {
         context.players.push_back(
             std::make_unique<AiPlayer>(PlayerInfo{PlayerType::AI, SideTag::RED}));
 
-        assert(nullptr != dynamic_cast<AiPlayer*>(context.players.back().get()));
-        set_difficulty(*static_cast<AiPlayer*>(context.players.back().get()));
+        assert(nullptr != dynamic_cast<AiPlayer *>(context.players.back().get()));
+        set_difficulty(*static_cast<AiPlayer *>(context.players.back().get()));
 
         context.players.push_back(
             std::make_unique<HumanPlayer>(PlayerInfo{PlayerType::Human, SideTag::BLACK}));
@@ -63,9 +65,12 @@ void StandardPveMode::set_difficulty(AiPlayer &ai_player) const {
 }
 
 void StandardPveMode::init_pieces(GameContext &context) const {
-
+    const auto &piece_configs = StandardChineseChessConfig::get_piece_configs();
+    for (const auto &piece_config : piece_configs) {
+        context.pieces.push_back(PieceFactory::create_piece(piece_config));
+    }
 }
 void StandardPveMode::init_board(GameContext &context) const {
+
 }
-void StandardPveMode::init_action(GameContext &context) const {
-}
+void StandardPveMode::init_action(GameContext &context) const {}
