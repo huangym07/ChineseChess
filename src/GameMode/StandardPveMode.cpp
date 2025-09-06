@@ -18,18 +18,14 @@
 // 初始化棋子
 // 初始化棋盘
 // 初始化流程
-// TODO 调用 context.action.run_game() 开始游戏流程
+// 调用 context.action.run_game() 开始游戏流程
 void StandardPveMode::init(GameContext &context) const {
     init_players(context);
     init_pieces(context);
     init_board(context);
     init_action(context);
 
-
-    // TEST 打印棋盘，测试下棋子棋盘初始化
-    context.board->show_board();
-    assert(false && "TEST OVER");
-    // TEST
+    context.action->run_game(context);
 }
 
 void StandardPveMode::init_players(GameContext &context) const {
@@ -79,10 +75,8 @@ void StandardPveMode::set_difficulty(AiPlayer &ai_player) const {
 void StandardPveMode::init_pieces(GameContext &context) const {
     const auto &piece_configs = StandardChineseChessConfig::get_piece_configs();
 
-    context.pieces.reserve(piece_configs.size());
-
     for (const auto &piece_config : piece_configs) {
-        context.pieces.push_back(PieceFactory::create_piece(piece_config));
+        context.pieces[piece_config.side_tag].push_back(PieceFactory::create_piece(piece_config));
     }
 }
 void StandardPveMode::init_board(GameContext &context) const {
