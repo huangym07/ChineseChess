@@ -2,11 +2,58 @@
 #include "ChessPiece/ChessPiece.h"
 #include "Common/CoreType.h"
 #include <cassert>
+#include <cstdlib>
 #include <iostream>
+#include <utility>
+
+void ChessBoard::calculate_range() {
+    assert(width_ >= 3 && height_ >= 2 && "棋盘过小不允许存在九宫和楚河汉界");
+
+    // 楚河汉界
+    red_river = (height_ - 1) / 2;
+    black_river = height_ % 2 ? red_river : red_river + 1;
+
+    // 九宫的 (x, y) 坐标
+    // 九宫 x 范围占据棋盘的 1/3
+    // 棋盘 x 范围可被 3 整除时，九宫、九宫两侧三等分
+    // 棋盘 x 范围被 3 除余 1 时，九宫左侧 x 范围 = 九宫 x 范围 = 九宫右侧 x 范围 - 1
+    // 棋盘 x 范围被 3 除余 2 时，九宫左侧 x 范围 - 1 = 九宫 x 范围 = 九宫右侧 x 范围 - 1
+    // 如 (棋盘 x 范围 -> 九宫 x 范围) [0, 8] -> [3, 5], [0, 9] -> [3, 5], [0, 10] -> [4, 6]
+    // 九宫 y 范围占据阵营 y (红方->[0, red_rive], 黑方->[black_river, black_river]) 的 1/2
+    // 阵营 y 不能被 2 整除时，九宫 y 范围占据更多一格的那一半
+    // 如 (阵营 y -> 九宫 y) [0, 4] -> [0, 2], [0, 5] -> [0, 2], [0, 6] -> [0, 3]
+
+    // nine palace x range
+    int x_range = width_ / 3;
+    // nine palace y range
+    // red_river - 0 + 1 是阵营长度
+    // (red_river - 0 + 1) + (2 - 1) 是为了利用整数除法自动向上取整
+    // 最终 (red_river + 2) / 2
+    int y_range = (red_river + 2) / 2;
+
+    // nine palace left x
+    int lx = width_ % 3 == 2 ? x_range + 1 : x_range;
+    // nine palace right x
+    int rx = lx + x_range - 1;
+
+    red_nine_palace = std::make_pair(Position{lx, 0}, Position{rx, y_range - 1});
+    black_nine_palace =
+        std::make_pair(Position{lx, height_ - 1 - y_range + 1}, Position{rx, height_ - 1});
+}
 
 ChessBoard::ChessBoard(int width, int height,
                        const std::map<SideTag, std::vector<std::unique_ptr<ChessPiece>>> &pieces)
     : width_(width), height_(height), board_(height, std::vector<ChessPiece *>(width, nullptr)) {
+
+    if (!width || !height) {
+        std::cerr << "棋盘宽或者高不能为零，游戏终止，请修正棋盘宽高后重启游戏\n";
+        std::exit(EXIT_FAILURE);
+    }
+
+    // 当棋盘 [x, y] 分别不小于 [2, 3] 时，九宫和楚河汉界才允许存在
+    if (height_ >= 2 && width_ >= 3)
+        calculate_range();
+
     for (const auto &side_pieces : pieces) {
         for (const auto &uptr : side_pieces.second) {
             assert(nullptr != uptr && "棋盘构造时，不应传入空的棋子指针");
@@ -35,6 +82,33 @@ bool ChessBoard::set_piece(Position pos, ChessPiece *piece) {
 
 ChessPiece *ChessBoard::get_piece(Position pos) const {
     return is_out_of_board(pos) ? nullptr : board_[pos.y][pos.x];
+}
+
+bool ChessBoard::is_out_of_nine_palace(SideTag side_tag, Position pos) const {
+    switch (side_tag) {
+    case SideTag::RED: {
+        return pos.x > red_nine_palace.second.x || pos.x < red_nine_palace.first.x ||
+               pos.y < red_nine_palace.first.y || pos.y > red_nine_palace.second.y;
+    }
+    case SideTag::BLACK: {
+        return pos.x > black_nine_palace.second.x || pos.x < black_nine_palace.first.x ||
+               pos.y < black_nine_palace.first.y || pos.y > black_nine_palace.second.y;
+    }
+    default:
+        assert(false && "传入未初始化的未知阵营枚举值");
+    }
+}
+bool ChessBoard::is_across_river(SideTag side_tag, Position pos) const {
+    switch (side_tag) {
+    case SideTag::RED: {
+        return pos.y > red_river;
+    }
+    case SideTag::BLACK: {
+        return pos.y < black_river;
+    }
+    default:
+        assert(false && "传入未初始化的未知阵营枚举值");
+    }
 }
 
 void ChessBoard::show_board() const {

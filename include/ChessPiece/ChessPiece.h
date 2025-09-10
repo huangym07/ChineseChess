@@ -45,9 +45,8 @@ class ChessPiece {
             attributes_->remove_attribute(type);
     }
 
-    // TODO
     // virtual std::vector<Position> basic_moves_gen(const ChessBoard &board) const = 0;
-    // virtual bool basic_check_move(Position target, const ChessBoard &board) const = 0;
+    // virtual bool basic_check_move(Position target) const = 0;
     // virtual bool special_check_move(Position target, const ChessBoard &board) const = 0;
 
     std::vector<Position> get_atk_range(Position pos, const ChessBoard &board) const {

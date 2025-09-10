@@ -65,4 +65,9 @@ struct PieceConfig {
     Position pos;
 };
 
+struct PlayerInfo {
+    PlayerType player_type;
+    SideTag side_tag;
+};
+
 #endif // CHINESECHESS_COMMON_CORETYPE_H
