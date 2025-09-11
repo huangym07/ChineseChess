@@ -14,10 +14,9 @@ class Advisor : public ChessPiece {
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
 
-    // std::vector<Position> basic_moves_gen(const ChessBoard &board) const override;
-    // bool basic_check_move(Position target) const override;
-    // // TODONEXT
-    // bool special_check_move(Position target, const ChessBoard &board) const override;
+    std::vector<Position> basic_moves_gen(const ChessBoard &board) const override;
+    bool basic_check_move(Position target) const override;
+    bool special_check_move(Position target, const ChessBoard &board) const override;
 };
 
 #endif // CHINESECHESS_CHESSPIECE_ADVISOR_H

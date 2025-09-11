@@ -11,6 +11,7 @@
     } while(0)
 
 #define ASSERT_FALSE(condition, message) ASSERT_TRUE(!(condition), message)
+#define ASSERT_EQ(a, b, message) ASSERT_TRUE((a == b), #a " == " #b " 不成立，实际值: " #a " = " << (a) << ", " #b " = " << (b) << "。" << message)
 
 #define TEST_MAIN(...) \
     int main() { \
