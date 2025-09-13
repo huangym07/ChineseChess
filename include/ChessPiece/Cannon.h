@@ -13,10 +13,10 @@ class Cannon : public ChessPiece {
                                               : AnsiColor::colored_text(AnsiColor::BLACK, "炮"),
                      PieceAttributes::create_default_instance(),
                      &SinglePosAtkRange::get_instance()) {}
-    // TODO
-    // std::vector<Position> basic_moves_gen(const ChessBoard &board) const override;
-    // bool basic_check_move(Position target, const ChessBoard &board) const override;
-    // bool special_check_move(Position target, const ChessBoard &board) const override;
+
+    std::vector<Position> basic_moves_gen(const ChessBoard &board) const override;
+    bool basic_check_move(Position target) const override;
+    bool special_check_move(Position target, const ChessBoard &board) const override;
 };
 
 #endif // CHINESECHESS_CHESSPIECE_CANNON_H
