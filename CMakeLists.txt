@@ -42,7 +42,7 @@ endif()
 
 option(BUILD_TESTS "Build unit tests" OFF)
 if(BUILD_TESTS) 
-    message("启用单元测试")
+    message(STATUS "启用单元测试")
     enable_testing()
     add_subdirectory(${CMAKE_SOURCE_DIR}/test)
 endif()
