@@ -125,3 +125,25 @@ void ChessBoard::show_board() const {
         }
     }
 }
+
+int ChessBoard::count_straight_obstacles_between(Position start, Position end) const {
+    assert((start.x == end.x || start.y == end.y) && "检测直线上两点间（不含两点本身）的障碍物个数，传入参数应确保在一条直线上");
+
+    int count = 0;
+
+    if (start.x == end.x) {
+        int y_start = std::min(start.y, end.y);
+        int y_end = std::max(start.y, end.y);
+        for (int y_current = y_start + 1; y_current < y_end; ++y_current) {
+            count += nullptr != get_piece({start.x, y_current});
+        }
+    } else {
+        int x_start = std::min(start.x, end.x);
+        int x_end = std::max(start.x, end.x);
+        for (int x_current = x_start + 1; x_current < x_end; ++x_current) {
+            count += nullptr != get_piece({x_current, start.y});
+        }
+    }
+
+    return count;
+}
