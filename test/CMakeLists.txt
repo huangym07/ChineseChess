@@ -34,9 +34,19 @@ add_executable(cannon_utest
 )
 add_test(NAME cannon_utest COMMAND cannon_utest)
 
+# 4 Chariot
+add_executable(chariot_utest
+    ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp
+    ${CMAKE_SOURCE_DIR}/src/PieceAttributes.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Chariot.cpp
+
+    ${CMAKE_SOURCE_DIR}/test/ChessPiece/ChariotUtest.cpp
+)
+add_test(NAME chariot_utest COMMAND chariot_utest)
 
 
-foreach(test_target chess_board_utest advisor_utest cannon_utest)
+
+foreach(test_target chess_board_utest advisor_utest cannon_utest chariot_utest)
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         target_compile_options(${test_target} PRIVATE -O0 -g)
     endif()
@@ -45,4 +55,4 @@ foreach(test_target chess_board_utest advisor_utest cannon_utest)
     endif()
 endforeach()
 
-add_custom_target(all_utests DEPENDS chess_board_utest advisor_utest cannon_utest)
+add_custom_target(all_utests DEPENDS chess_board_utest advisor_utest cannon_utest chariot_utest)
