@@ -1,8 +1,9 @@
 #ifndef CHINESECHESS_COMMON_CORETYPE_H
 #define CHINESECHESS_COMMON_CORETYPE_H
 
-#include <string>
 #include <cassert>
+#include <iostream>
+#include <string>
 
 namespace AnsiColor {
 // ANSI 转义序列颜色
@@ -19,15 +20,20 @@ inline std::string colored_text(const char *color, const char *text) {
 struct Position {
     int x, y;
 
-    int &operator[](int index) { 
+    constexpr int &operator[](int index) {
         assert(index >= 0 && index <= 1 && "访问 Position 的下标应为 0 或 1");
         return *(&x + index);
     }
-    const int &operator[](int index) const { 
+    constexpr const int &operator[](int index) const {
         assert(index >= 0 && index <= 1 && "访问 Position 的下标应为 0 或 1");
         return *(&x + index);
     }
+
 };
+inline std::ostream &operator<<(std::ostream &os, const Position &pos) {
+    os << "(" << pos.x << ", " << pos.y << ")";
+    return os;
+}
 
 enum class AttributeType {
     HP,
