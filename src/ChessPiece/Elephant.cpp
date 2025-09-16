@@ -6,16 +6,16 @@
 std::vector<Position> Elephant::basic_moves_gen(const ChessBoard &board) const {
     std::vector<Position> ret;
 
-    for (auto pos : basic_move_offsets) {
-        ret.push_back({pos_.x + pos.x, pos_.y + pos.y});
+    for (auto offset : basic_move_offsets) {
+        ret.push_back({pos_.x + offset.x, pos_.y + offset.y});
     }
 
     return ret;
 }
 
 bool Elephant::basic_check_move(Position target) const {
-    for (auto pos : basic_move_offsets) {
-        if (target.x == pos.x + pos_.x && target.y == pos.y + pos_.y)
+    for (auto offset : basic_move_offsets) {
+        if (target.x == offset.x + pos_.x && target.y == offset.y + pos_.y)
             return true;
     }
     return false;

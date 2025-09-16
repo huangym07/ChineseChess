@@ -4,8 +4,14 @@
 #include "AttackRange/SinglePosAtkRange.h"
 #include "ChessPiece.h"
 #include "Common/CoreType.h"
+#include <array>
 
 class Advisor : public ChessPiece {
+  private:
+    constexpr static std::array<Position, 4> basic_move_offsets = {{
+        {-1, -1}, {-1, +1},
+        {+1, -1}, {+1, +1}
+    }};
   public:
     Advisor(SideTag side_tag, Position pos)
         : ChessPiece(PieceType::ADVISOR, side_tag, pos,
