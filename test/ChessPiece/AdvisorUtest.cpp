@@ -4,7 +4,6 @@
 #include "Common/CoreType.h"
 #include "TestFramework.h"
 #include <Windows.h>
-#include <iostream>
 
 int width = StandardChineseChessConfig::WIDTH;
 int height = StandardChineseChessConfig::HEIGHT;
@@ -23,12 +22,12 @@ TEST_CASE(basic_moves_gen) {
     for (auto pos : expected) {
         bool found = false;
         for (auto move : moves) {
-            if (move.x == pos.x && move.y == pos.y) {
+            if (move == pos) {
                 found = true;
                 break;
             }
         }
-        ASSERT_TRUE(found, "基础移动位置未包含 (" << pos.x << ", " << pos.y << ")");
+        ASSERT_TRUE(found, "基础移动位置未包含" << pos);
     }
 }
 

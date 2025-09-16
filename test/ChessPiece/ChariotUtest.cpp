@@ -18,7 +18,7 @@ TEST_CASE(basic_moves_gen) {
     int x_same_count = 0, y_same_count = 0;
     auto pos = chariot.pos();
     for (auto move : moves) {
-        ASSERT_FALSE(move.x == pos.x && move.y == pos.y,
+        ASSERT_FALSE(move == pos,
                      "车符合基本移动规则的目标坐标不应与自身所在位置重合");
         ASSERT_TRUE(move.x == pos.x || move.y == pos.y,
                     "车符合基本移动规则的目标坐标应与自身所在位置在同一条直线上");

@@ -29,6 +29,12 @@ struct Position {
         return *(&x + index);
     }
 
+    constexpr bool operator==(const Position &other) {
+        return x == other.x && y == other.y;
+    }
+    constexpr bool operator!=(const Position &other) {
+        return !(*this == other);
+    }
 };
 inline std::ostream &operator<<(std::ostream &os, const Position &pos) {
     os << "(" << pos.x << ", " << pos.y << ")";

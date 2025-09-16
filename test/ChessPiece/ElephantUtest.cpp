@@ -21,7 +21,7 @@ TEST_CASE(basic_moves_gen) {
     for (auto pos : expected) {
         bool found = false;
         for (auto move : moves) {
-            if (move.x == pos.x && move.y == pos.y) {
+            if (move == pos) {
                 found = true;
                 break;
             }
