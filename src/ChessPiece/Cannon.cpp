@@ -23,7 +23,7 @@ std::vector<Position> Cannon::basic_moves_gen(const ChessBoard &board) const {
 }
 
 bool Cannon::basic_check_move(Position target) const {
-    if (target.x == pos_.x && target.y == pos_.y)
+    if (target == pos_)
         return false;
 
     if (target.x != pos_.x && target.y != pos_.y)

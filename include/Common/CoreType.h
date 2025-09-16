@@ -29,11 +29,18 @@ struct Position {
         return *(&x + index);
     }
 
-    constexpr bool operator==(const Position &other) {
+    constexpr bool operator==(const Position &other) const {
         return x == other.x && y == other.y;
     }
-    constexpr bool operator!=(const Position &other) {
+    constexpr bool operator!=(const Position &other) const {
         return !(*this == other);
+    }
+
+    constexpr Position operator+(const Position &other) const {
+        return {x + other.x, y + other.y};
+    }
+    constexpr Position operator/(int divisor) const {
+        return {x / divisor, y / divisor};
     }
 };
 inline std::ostream &operator<<(std::ostream &os, const Position &pos) {

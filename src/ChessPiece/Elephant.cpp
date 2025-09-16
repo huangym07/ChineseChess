@@ -7,7 +7,7 @@ std::vector<Position> Elephant::basic_moves_gen(const ChessBoard &board) const {
     std::vector<Position> ret;
 
     for (auto offset : basic_move_offsets) {
-        ret.push_back({pos_.x + offset.x, pos_.y + offset.y});
+        ret.push_back({pos_ + offset});
     }
 
     return ret;
@@ -15,7 +15,7 @@ std::vector<Position> Elephant::basic_moves_gen(const ChessBoard &board) const {
 
 bool Elephant::basic_check_move(Position target) const {
     for (auto offset : basic_move_offsets) {
-        if (target.x == offset.x + pos_.x && target.y == offset.y + pos_.y)
+        if (target == pos_ + offset)
             return true;
     }
     return false;
@@ -25,7 +25,7 @@ bool Elephant::special_check_move(Position target, const ChessBoard &board) cons
     if (board.is_across_river(side_tag_, target))
         return false;
 
-    Position center = {(pos_.x + target.x) / 2, (pos_.y + target.y) / 2};
+    Position center = (pos_ + target) / 2;
     if (nullptr != board.get_piece(center))
         return false;
 
