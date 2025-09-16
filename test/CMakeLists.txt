@@ -24,6 +24,7 @@ set(CHESSPIECE_UTEST_SRC_LIST
     cannon_utest:::::${CMAKE_SOURCE_DIR}/src/ChessPiece/Cannon.cpp:::::${CMAKE_SOURCE_DIR}/test/ChessPiece/CannonUtest.cpp
     chariot_utest:::::${CMAKE_SOURCE_DIR}/src/ChessPiece/Chariot.cpp:::::${CMAKE_SOURCE_DIR}/test/ChessPiece/ChariotUtest.cpp
     elephant_utest:::::${CMAKE_SOURCE_DIR}/src/ChessPiece/Elephant.cpp:::::${CMAKE_SOURCE_DIR}/test/ChessPiece/ElephantUtest.cpp
+    general_utest:::::${CMAKE_SOURCE_DIR}/src/ChessPiece/General.cpp:::::${CMAKE_SOURCE_DIR}/test/ChessPiece/GeneralUtest.cpp
 )
 
 # message(STATUS "棋子测试")
