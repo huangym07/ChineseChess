@@ -38,5 +38,5 @@ bool Cannon::basic_check_move(Position target) const {
 // 因此目标坐标与源坐标（当前位置）不重合且在同一条直线上
 bool Cannon::special_check_move(Position target, const ChessBoard &board) const {
     int count = board.count_straight_obstacles_between(pos_, target);
-    return nullptr == board.get_piece(target) ? (count == 0) : (count == 1);
+    return nullptr == board.get_piece(target) ? (0 == count) : (1 == count);
 }

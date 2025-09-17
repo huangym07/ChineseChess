@@ -1,7 +1,6 @@
 #ifndef CHINESECHESS_CHESSPIECE_STD_CHS_CONFIG_H
 #define CHINESECHESS_CHESSPIECE_STD_CHS_CONFIG_H
 
-// TODONEXT
 #include "Common/CoreType.h"
 #include <vector>
 
