@@ -33,7 +33,7 @@ class ChessBoard {
     bool is_out_of_nine_palace(SideTag side_tag, Position pos) const;
     bool is_across_river(SideTag side_tag, Position pos) const;
 
-    // 检测一条直线上的两点间（不含两点）的障碍物个数
+    // 检测一条直线上的两点间（不含两点）的障碍物个数，
     // 应确保传入的两点在一条直线上
     int count_straight_obstacles_between(Position start, Position end) const;
 

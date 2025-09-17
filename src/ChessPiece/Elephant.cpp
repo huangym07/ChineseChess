@@ -14,11 +14,7 @@ std::vector<Position> Elephant::basic_moves_gen(const ChessBoard &board) const {
 }
 
 bool Elephant::basic_check_move(Position target) const {
-    for (auto offset : basic_move_offsets) {
-        if (target == pos_ + offset)
-            return true;
-    }
-    return false;
+    return 2 == std::abs(pos_.x - target.x) && 2 == std::abs(pos_.y - target.y);
 }
 
 bool Elephant::special_check_move(Position target, const ChessBoard &board) const {

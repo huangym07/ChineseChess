@@ -37,9 +37,9 @@ bool Chariot::basic_check_move(Position target) const {
     return true;
 }
 
-// 自占判断在 special_move_check 之前
-// 因此目标坐标要么为空，要么是敌方棋子，不会是己方其他棋子
-// basic_move_check 在 special_move_check 之前
+// 自占判断在 special_move_check 之前，
+// 因此目标坐标要么为空，要么是敌方棋子，不会是己方其他棋子，
+// basic_move_check 在 special_move_check 之前，
 // 因此目标坐标与源坐标（当前位置）不重合且在同一条直线上
 bool Chariot::special_check_move(Position target, const ChessBoard &board) const {
     int count = board.count_straight_obstacles_between(pos_, target);

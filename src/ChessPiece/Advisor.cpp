@@ -13,12 +13,7 @@ std::vector<Position> Advisor::basic_moves_gen(const ChessBoard &board) const {
 }
 
 bool Advisor::basic_check_move(Position target) const {
-    for (auto offset : basic_move_offsets) {
-        if (target == pos_ + offset)
-            return true;
-    }
-
-    return false;
+    return 1 == std::abs(pos_.x - target.x) && 1 == std::abs(pos_.y - target.y);
 }
 
 bool Advisor::special_check_move(Position target, const ChessBoard &board) const {
