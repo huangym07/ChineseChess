@@ -50,15 +50,12 @@ enum class AttributeType {
     MAGIC_DEF,
     SPEED,
 };
-enum class AttriOpType {
-    SET,    // 不管有无属性，强制覆盖，不会失败
-    ADD,    // 增加属性，已存在该属性时失败
-    CHANGE, // 改变属性，属性 += delta，无该属性时失败
-};
 
 namespace std {
 template <> struct hash<AttributeType> {
-    size_t operator()(const AttributeType &type) const noexcept { return static_cast<size_t>(type); }
+    size_t operator()(const AttributeType &type) const noexcept {
+        return static_cast<size_t>(type);
+    }
 };
 } // namespace std
 class ChessPiece;
@@ -66,6 +63,10 @@ struct PieceSnapshot {
     ChessPiece *piece;
     Position pos;
     std::unordered_map<AttributeType, int> attributes;
+
+    PieceSnapshot(ChessPiece *piece_, Position pos_,
+                  std::unordered_map<AttributeType, int> attributes_)
+        : piece(piece_), pos(pos_), attributes(std::move(attributes_)) {}
 };
 
 enum class PieceType {

@@ -10,14 +10,12 @@ set(ALL_UTEST_TARGETS "")
 ################################# 棋盘单元测试 #################################
 add_executable(chess_board_utest
     ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp
-    ${CMAKE_SOURCE_DIR}/src/PieceAttributes.cpp
     ${CMAKE_SOURCE_DIR}/test/ChessBoardUtest.cpp
 )
 list(APPEND ALL_UTEST_TARGETS chess_board_utest)
 ################################# 棋子单元测试 #################################
 set(COMMON_CHESSPIECE_UTEST_SRC 
     ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp
-    ${CMAKE_SOURCE_DIR}/src/PieceAttributes.cpp
 )
 set(CHESSPIECE_UTEST_SRC_LIST
     advisor_utest:::::${CMAKE_SOURCE_DIR}/src/ChessPiece/Advisor.cpp:::::${CMAKE_SOURCE_DIR}/test/ChessPiece/AdvisorUtest.cpp

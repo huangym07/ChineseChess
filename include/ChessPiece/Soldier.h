@@ -3,6 +3,7 @@
 
 #include "AttackRange/SinglePosAtkRange.h"
 #include "ChessPiece/ChessPiece.h"
+#include "ChessPiece/StandardChineseChessConfig.h"
 #include "Common/CoreType.h"
 
 class Soldier : public ChessPiece {
@@ -11,7 +12,7 @@ class Soldier : public ChessPiece {
         : ChessPiece(PieceType::SOLDIER, side_tag, pos,
                      SideTag::RED == side_tag ? AnsiColor::colored_text(AnsiColor::RED, "兵")
                                               : AnsiColor::colored_text(AnsiColor::BLACK, "卒"),
-                     PieceAttributes::create_default_instance(),
+                     StandardChineseChessConfig::create_default_attributes(),
                      &SinglePosAtkRange::get_instance()) {}
 
     std::vector<Position> basic_moves_gen(const ChessBoard &board) const override;

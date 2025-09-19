@@ -3,10 +3,6 @@
 
 #include "AttackRange/AttackRange.h"
 #include "Common/CoreType.h"
-#include "PieceAttributes.h"
-#include <cassert>
-#include <memory>
-#include <optional>
 #include <string>
 
 class ChessPiece {
@@ -15,12 +11,12 @@ class ChessPiece {
     SideTag side_tag_;
     Position pos_;
     std::string display_info_;
-    std::unique_ptr<PieceAttributes> attributes_;
+    std::unordered_map<AttributeType, int> attributes_;
     const AttackRange *attack_range_;
 
   protected:
     ChessPiece(PieceType piece_type, SideTag side_tag, Position pos, std::string display_info,
-               std::unique_ptr<PieceAttributes> attributes = nullptr,
+               std::unordered_map<AttributeType, int> attributes,
                const AttackRange *attack_range = nullptr)
         : piece_type_(piece_type), side_tag_(side_tag), pos_(pos),
           display_info_(std::move(display_info)), attributes_(std::move(attributes)),
@@ -33,16 +29,8 @@ class ChessPiece {
     void set_pos(Position pos) { pos_ = pos; }
     const std::string &display_info() const { return display_info_; }
 
-    std::optional<int> get_attribute(AttributeType type) const {
-        return attributes_ ? attributes_->get_attribute(type) : std::nullopt;
-    }
-    bool modify_attribute(AttriOpType op, AttributeType type, int value) {
-        return attributes_ ? attributes_->modify_attribute(op, type, value) : false;
-    }
-    void remove_attribute(AttributeType type) {
-        if (attributes_)
-            attributes_->remove_attribute(type);
-    }
+    int get_attribute(AttributeType type) const;
+    void set_attribute(AttributeType type, int value);
 
     virtual std::vector<Position> basic_moves_gen(const ChessBoard &board) const = 0;
     virtual bool basic_check_move(Position target) const = 0;

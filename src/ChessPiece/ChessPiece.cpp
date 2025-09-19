@@ -3,12 +3,22 @@
 #include "Common/CoreType.h"
 #include <unordered_map>
 
+int ChessPiece::get_attribute(AttributeType type) const {
+    auto it = attributes_.find(type);
+    assert(attributes_.end() != it && "查询棋子属性值时，找不到对应属性");
+    return it->second;
+}
+void ChessPiece::set_attribute(AttributeType type, int value) {
+    assert(attributes_.end() != attributes_.find(type) && "强制覆盖棋子属性值时，找不到对应属性");
+    attributes_[type] = value;
+}
+
 int ChessPiece::calc_damage(const ChessPiece *defender) const {
     assert(nullptr != defender && "defender 不应为 nullptr");
-    int phy_damage = get_attribute(AttributeType::PHYSICAL_ATK).value_or(0) -
-                     defender->get_attribute(AttributeType::PHYSICAL_DEF).value_or(0);
-    int mgc_damage = get_attribute(AttributeType::MAGIC_ATK).value_or(0) -
-                     defender->get_attribute(AttributeType::MAGIC_DEF).value_or(0);
+    int phy_damage = get_attribute(AttributeType::PHYSICAL_ATK) -
+                     defender->get_attribute(AttributeType::PHYSICAL_DEF);
+    int mgc_damage = get_attribute(AttributeType::MAGIC_ATK) -
+                     defender->get_attribute(AttributeType::MAGIC_DEF);
     return std::max(0, std::max(phy_damage, mgc_damage));
 }
 
@@ -25,18 +35,18 @@ std::vector<PieceSnapshot> ChessPiece::move_attack(ChessBoard &board, Position t
             // 确认该棋子会被攻击，
             // 在攻击效果实现之前，
             // 保存将要变化的状态
-            auto hp_opt = atked_piece->get_attribute(AttributeType::HP);
+            auto hp = atked_piece->get_attribute(AttributeType::HP);
 
-            assert(hp_opt.has_value() && "棋盘上存在的棋子应有生命值属性");
-            assert(0 < hp_opt.value() && "棋盘上存在的棋子生命值应 > 0");
+            assert(0 < hp && "棋盘上存在的棋子生命值应 > 0");
 
-            piece_snaps.emplace_back(atked_piece, atked_pos, std::unordered_map<AttributeType, int>{{AttributeType::HP, hp_opt.value()}});
+            piece_snaps.emplace_back(atked_piece, atked_pos, std::unordered_map<AttributeType, int>{{AttributeType::HP, hp}});
 
             // 实现攻击效果
             int damage = calc_damage(atked_piece);
-            atked_piece->modify_attribute(AttriOpType::CHANGE, AttributeType::HP, -damage);
+            int new_hp = hp - damage;
+            atked_piece->set_attribute(AttributeType::HP, new_hp);
 
-            if (0 >= atked_piece->get_attribute(AttributeType::HP).value_or(0)) {
+            if (0 >= new_hp) {
                 // 被攻击者棋子死亡，从棋盘上移除，其位置逻辑上应设置为无效状态或场外位置，但没必要
                 // atked_piece->set_pos({-1, -1});
 
@@ -46,7 +56,7 @@ std::vector<PieceSnapshot> ChessPiece::move_attack(ChessBoard &board, Position t
     }
 
     // 最后添加攻击者棋子的快照
-    // 当前情况下，攻击者在攻击过程中属性不会变化，所以为空
+    // 目前攻击者在攻击逻辑中属性不会变化，所以为空
     piece_snaps.emplace_back(this, pos_, std::unordered_map<AttributeType, int>{});
 
     // 确定棋子最终位置
@@ -77,7 +87,7 @@ void ChessPiece::undo_attack_move(ChessBoard &board, const std::vector<PieceSnap
 
         // 强制覆盖为原本属性值
         for (const auto &[attr_type, value] : piece_snap.attributes) {
-            piece->modify_attribute(AttriOpType::SET, attr_type, value);
+            piece->set_attribute(attr_type, value);
         }
     }
 }

@@ -12,6 +12,12 @@ class StandardChineseChessConfig {
     static constexpr int WIDTH = 9;
     static constexpr int HEIGHT = 10;
 
+    inline static std::unordered_map<AttributeType, int> create_default_attributes() {
+        return {{AttributeType::HP, 1},           {AttributeType::PHYSICAL_ATK, 1},
+                {AttributeType::PHYSICAL_DEF, 0}, {AttributeType::MAGIC_ATK, 0},
+                {AttributeType::MAGIC_DEF, 0},    {AttributeType::SPEED, 1}};
+    }
+
     inline static const std::vector<PieceConfig> &get_piece_configs() {
         // 内部表示采用 红上黑下
         static const std::vector<PieceConfig> default_configs{
