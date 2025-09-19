@@ -2,8 +2,10 @@
 #define CHINESECHESS_COMMON_CORETYPE_H
 
 #include <cassert>
+#include <cstddef>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 namespace AnsiColor {
 // ANSI 转义序列颜色
@@ -29,19 +31,11 @@ struct Position {
         return *(&x + index);
     }
 
-    constexpr bool operator==(const Position &other) const {
-        return x == other.x && y == other.y;
-    }
-    constexpr bool operator!=(const Position &other) const {
-        return !(*this == other);
-    }
+    constexpr bool operator==(const Position &other) const { return x == other.x && y == other.y; }
+    constexpr bool operator!=(const Position &other) const { return !(*this == other); }
 
-    constexpr Position operator+(const Position &other) const {
-        return {x + other.x, y + other.y};
-    }
-    constexpr Position operator/(int divisor) const {
-        return {x / divisor, y / divisor};
-    }
+    constexpr Position operator+(const Position &other) const { return {x + other.x, y + other.y}; }
+    constexpr Position operator/(int divisor) const { return {x / divisor, y / divisor}; }
 };
 inline std::ostream &operator<<(std::ostream &os, const Position &pos) {
     os << "(" << pos.x << ", " << pos.y << ")";
@@ -60,6 +54,18 @@ enum class AttriOpType {
     SET,    // 不管有无属性，强制覆盖，不会失败
     ADD,    // 增加属性，已存在该属性时失败
     CHANGE, // 改变属性，属性 += delta，无该属性时失败
+};
+
+namespace std {
+template <> struct hash<AttributeType> {
+    size_t operator()(const AttributeType &type) const noexcept { return static_cast<size_t>(type); }
+};
+} // namespace std
+class ChessPiece;
+struct PieceSnapshot {
+    ChessPiece *piece;
+    Position pos;
+    std::unordered_map<AttributeType, int> attributes;
 };
 
 enum class PieceType {

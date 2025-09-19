@@ -39,7 +39,6 @@ class ChessPiece {
     bool modify_attribute(AttriOpType op, AttributeType type, int value) {
         return attributes_ ? attributes_->modify_attribute(op, type, value) : false;
     }
-
     void remove_attribute(AttributeType type) {
         if (attributes_)
             attributes_->remove_attribute(type);
@@ -53,8 +52,9 @@ class ChessPiece {
         return attack_range_ ? attack_range_->get_range(pos, board) : std::vector<Position>{};
     }
 
-    std::vector<ChessPiece *> move_attack(ChessBoard &board, Position target);
-    void undo_attack_move(ChessBoard &board, Position src, std::vector<Position> captured_pieces);
+    int calc_damage(const ChessPiece *defender) const;
+    std::vector<PieceSnapshot> move_attack(ChessBoard &board, Position target_pos);
+    void undo_attack_move(ChessBoard &board, const std::vector<PieceSnapshot> &piece_snaps);
     bool cap_capture(const ChessBoard &board, ChessPiece *target_piece) const;
 
     virtual ~ChessPiece() = default;
