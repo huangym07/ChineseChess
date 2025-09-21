@@ -91,3 +91,19 @@ void ChessPiece::undo_attack_move(ChessBoard &board, const std::vector<PieceSnap
         }
     }
 }
+
+bool ChessPiece::can_capture(const ChessBoard &board, const ChessPiece *piece) const {
+    assert(nullptr != piece && "ChessPiece::can_capture() 参数不应为空指针");
+    assert(0 < get_attribute(AttributeType::HP) && "ChessPiece::can_capture() 当前棋子应存活");
+    assert(0 < piece->get_attribute(AttributeType::HP) && "ChessPiece::can_capture() 目标棋子应存活");
+
+    // 同一阵营不能吃子
+    if (side_tag_ == piece->side_tag()) return false;
+
+    auto target_pos = piece->pos();
+    for (const auto &pos : where_can_attack(piece->pos())) {
+        if (basic_check_move(target_pos) && special_check_move(target_pos, board) && calc_damage(piece) >= piece->get_attribute(AttributeType::HP)) return true;
+    }
+
+    return false;
+}

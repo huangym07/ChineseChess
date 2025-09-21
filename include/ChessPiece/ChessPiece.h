@@ -39,11 +39,19 @@ class ChessPiece {
     std::vector<Position> get_atk_range(Position pos, const ChessBoard &board) const {
         return attack_range_ ? attack_range_->get_range(pos, board) : std::vector<Position>{};
     }
+    std::vector<Position> where_can_attack(Position target_pos) const {
+        return attack_range_ ? attack_range_->where_can_attack(target_pos) : std::vector<Position>{};
+    }
 
     int calc_damage(const ChessPiece *defender) const;
     std::vector<PieceSnapshot> move_attack(ChessBoard &board, Position target_pos);
     void undo_attack_move(ChessBoard &board, const std::vector<PieceSnapshot> &piece_snaps);
-    bool cap_capture(const ChessBoard &board, ChessPiece *target_piece) const;
+    /*
+        参数：board 棋盘，targer_piece 目标棋子
+        功能：检测当前棋子能否吃掉目标棋子
+        约束：目标棋子不应为空指针；当前棋子应存活；目标棋子应存活
+    */
+    bool can_capture(const ChessBoard &board, const ChessPiece *target_piece) const;
 
     virtual ~ChessPiece() = default;
 };

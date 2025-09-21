@@ -15,6 +15,9 @@ class SinglePosAtkRange : public AttackRange {
     std::vector<Position> get_range(Position pos, const ChessBoard &board) const override {
         return std::vector<Position>{pos};
     }
+    std::vector<Position> where_can_attack(Position target_pos) const override {
+        return std::vector<Position>{target_pos};
+    }
 
     static const SinglePosAtkRange &get_instance() {
         static SinglePosAtkRange instance;

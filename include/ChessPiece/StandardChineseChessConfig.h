@@ -22,11 +22,11 @@ class StandardChineseChessConfig {
         // 内部表示采用 红上黑下
         static const std::vector<PieceConfig> default_configs{
             // 红方基础表示
+            {PieceType::GENERAL, SideTag::RED, 4, 0},
             {PieceType::CHARIOT, SideTag::RED, 0, 0},
             {PieceType::HORSE, SideTag::RED, 1, 0},
             {PieceType::ELEPHANT, SideTag::RED, 2, 0},
             {PieceType::ADVISOR, SideTag::RED, 3, 0},
-            {PieceType::GENERAL, SideTag::RED, 4, 0},
             {PieceType::ADVISOR, SideTag::RED, 5, 0},
             {PieceType::ELEPHANT, SideTag::RED, 6, 0},
             {PieceType::HORSE, SideTag::RED, 7, 0},
@@ -40,11 +40,11 @@ class StandardChineseChessConfig {
             {PieceType::SOLDIER, SideTag::RED, 8, 3},
 
             // 黑方基础坐标
+            {PieceType::GENERAL, SideTag::BLACK, 4, 9},
             {PieceType::CHARIOT, SideTag::BLACK, 0, 9},
             {PieceType::HORSE, SideTag::BLACK, 1, 9},
             {PieceType::ELEPHANT, SideTag::BLACK, 2, 9},
             {PieceType::ADVISOR, SideTag::BLACK, 3, 9},
-            {PieceType::GENERAL, SideTag::BLACK, 4, 9},
             {PieceType::ADVISOR, SideTag::BLACK, 5, 9},
             {PieceType::ELEPHANT, SideTag::BLACK, 6, 9},
             {PieceType::HORSE, SideTag::BLACK, 7, 9},

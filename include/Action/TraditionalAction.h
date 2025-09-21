@@ -3,8 +3,12 @@
 
 #include "Action/Action.h"
 #include "Common/CoreType.h"
+#include "GameContext.h"
 
 class TraditionalAction : public Action {
+  private:
+    // 检测 side_tag 阵营是否被将军
+    bool is_checked(const GameContext &context, SideTag side_tag) const;
   public:
     void run_game(GameContext &context) const override;
 
