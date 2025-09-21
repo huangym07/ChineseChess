@@ -7,6 +7,7 @@ void TraditionalAction::run_game(GameContext &context) const {
         context.board->show_board();
         // TODO    
         assert(false && "run game");
+        std::exit(1);
     }
 }
 

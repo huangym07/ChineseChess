@@ -13,7 +13,17 @@ add_executable(chess_board_utest
     ${CMAKE_SOURCE_DIR}/test/ChessBoardUtest.cpp
 )
 list(APPEND ALL_UTEST_TARGETS chess_board_utest)
-################################# 棋子单元测试 #################################
+################################# 广义棋子单元测试 #################################
+add_executable(chess_piece_utest
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/ChessPiece.cpp 
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Advisor.cpp 
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Chariot.cpp 
+    ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp 
+
+    ${CMAKE_SOURCE_DIR}/test/ChessPiece/ChessPieceUtest.cpp 
+)
+list(APPEND ALL_UTEST_TARGETS chess_piece_utest)
+################################# 具体棋子单元测试 #################################
 set(COMMON_CHESSPIECE_UTEST_SRC 
     ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp
 )
