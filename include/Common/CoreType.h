@@ -67,6 +67,7 @@ struct PieceSnapshot {
     PieceSnapshot(ChessPiece *piece_, Position pos_,
                   std::unordered_map<AttributeType, int> attributes_)
         : piece(piece_), pos(pos_), attributes(std::move(attributes_)) {}
+    PieceSnapshot(PieceSnapshot &&other) noexcept : piece(other.piece), pos(other.pos), attributes(std::move(other.attributes)) {}
 };
 
 enum class PieceType {

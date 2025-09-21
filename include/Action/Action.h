@@ -18,6 +18,7 @@ class Action {
     // generate_all_valid_moves(GameContext &context, const Player *current_player) const = 0;
 
     // TODO
+    virtual ~Action() = default;
 };
 
 #endif // CHINESECHESS_ACTION_ACTION_H
