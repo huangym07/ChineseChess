@@ -6,7 +6,7 @@
 #include "GameContext.h"
 
 class TraditionalAction : public Action {
-  private:
+  protected: // 本为 private，为了单元测试，改成 protected
     // 检测 side_tag 阵营是否被将军
     bool is_checked(const GameContext &context, SideTag side_tag) const;
   public:
