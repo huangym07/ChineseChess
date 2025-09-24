@@ -7,7 +7,7 @@
 #include <vector>
 
 class ChessPiece;
-class SingleCommand : Command {
+class SingleCommand : public Command {
   private:
     ChessPiece *attacker_piece_;
     Position target_pos_;
