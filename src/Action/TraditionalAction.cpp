@@ -137,3 +137,7 @@ void TraditionalAction::run_game(GameContext &context) const {
         std::exit(1);
     }
 }
+
+bool TraditionalAction::check_game_over(GameContext &context, SideTag side_tag) const {
+    return 0 == generate_all_valid_moves(context, side_tag).size();
+}

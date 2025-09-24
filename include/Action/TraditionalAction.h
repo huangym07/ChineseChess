@@ -30,10 +30,10 @@ class TraditionalAction : public Action {
   public:
     void run_game(GameContext &context) const override;
 
-    // bool check_game_over(GameContext &context, SideTag side_tag) const override;
-
     std::vector<std::pair<ChessPiece*, Position>>
     generate_all_valid_moves(GameContext &context, SideTag side_tag) const override;
+
+    bool check_game_over(GameContext &context, SideTag side_tag) const override;
 };
 
 #endif // CHINESECHESS_ACTION_TRADITIONAL_H
