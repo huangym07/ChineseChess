@@ -78,7 +78,7 @@ bool TraditionalAction::check_move_after(const GameContext &context, SideTag sid
     const auto &board = *context.board;
 
     // 获取双方将/帅
-    std::vector<const ChessPiece *> generals(2, nullptr);
+    std::vector<const ChessPiece *> generals;
     for (const auto &pieces : context.pieces) {
         for (const auto &piece : pieces.second) {
             if (piece->piece_type() == PieceType::GENERAL) {

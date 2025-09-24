@@ -63,10 +63,32 @@ add_executable(is_checked_utest
     ${CMAKE_SOURCE_DIR}/src/ChessPiece/Cannon.cpp
     ${CMAKE_SOURCE_DIR}/src/ChessPiece/Soldier.cpp
     ${CMAKE_SOURCE_DIR}/src/ChessPiece/General.cpp
+    ${CMAKE_SOURCE_DIR}/src/Command/CommandManager.cpp
+    ${CMAKE_SOURCE_DIR}/src/Command/SingleCommand.cpp
 
     ${CMAKE_SOURCE_DIR}/test/IsCheckedUtest.cpp
 )
 list(APPEND ALL_UTEST_TARGETS is_checked_utest)
+################################# 全走法生成单元测试 #################################
+add_executable(valid_moves_gen_utest
+    ${CMAKE_SOURCE_DIR}/src/Action/TraditionalAction.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessBoard.cpp
+    ${CMAKE_SOURCE_DIR}/src/GameContext.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/PieceFactory.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/ChessPiece.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Advisor.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Cannon.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Chariot.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Elephant.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/General.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Horse.cpp
+    ${CMAKE_SOURCE_DIR}/src/ChessPiece/Soldier.cpp
+    ${CMAKE_SOURCE_DIR}/src/Command/CommandManager.cpp
+    ${CMAKE_SOURCE_DIR}/src/Command/SingleCommand.cpp
+
+    ${CMAKE_SOURCE_DIR}/test/ValidMovesGenUtest.cpp
+)
+list(APPEND ALL_UTEST_TARGETS valid_moves_gen_utest)
 ################################# 单元测试设置 #################################
 foreach(test_target IN LISTS ALL_UTEST_TARGETS)
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")
