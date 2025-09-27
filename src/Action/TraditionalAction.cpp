@@ -129,12 +129,49 @@ TraditionalAction::generate_all_valid_moves(GameContext &context, SideTag side_t
 }
 
 void TraditionalAction::run_game(GameContext &context) const {
+    int mod = context.players.size();
+
+    assert(2 == mod && "标准象棋玩家应为 2 名");
+
     int index = 0;
     while (true) {
         context.board->show_board();
-        // TODO
-        assert(false && "run game");
-        std::exit(1);
+
+        const auto &player = context.players[index];
+        if (check_game_over(context, player->side_tag())) {
+            std::cout << "游戏结束，" << (PlayerType::Human == player->player_type() ? "AI 玩家" : "人类玩家") << "获胜" << std::endl;
+            return;
+        }
+
+        bool undo = player->ask_undo_request();
+        if (undo) {
+            if (context.cmd_manager.undo(2)) {
+                std::cout << "悔棋成功" << std::endl;
+                continue;
+            } else {
+                std::cout << "悔棋失败" << std::endl;
+            }
+        }
+
+        while (true) {
+            auto [src_pos, target_pos] = player->move_chess(context);
+            if (!check_move_before(context, player->side_tag(), src_pos, target_pos)) {
+                std::cout << "走棋不合法" << std::endl;
+                continue;
+            }
+
+            context.cmd_manager.execute(std::make_unique<SingleCommand>(context.board->get_piece(src_pos), target_pos, context));
+
+            if (!check_move_after(context, player->side_tag())) {
+                context.cmd_manager.undo(1);
+                std::cout << "走棋不合法" << std::endl;
+                continue;
+            }
+
+            break;
+        }
+
+        index = (index + 1) % mod;
     }
 }
 

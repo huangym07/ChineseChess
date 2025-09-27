@@ -12,7 +12,7 @@ std::pair<Position, Position> HumanPlayer::move_chess(GameContext &context) cons
     std::string input;
 
     while (true) {
-        std::cout << "请按照 (x1, y1) -> (x2, y2) 的形式输入走棋决策(用半角符号): ";
+        std::cout << "以棋盘左上角 (0, 0) 为原点，水平向右为 x 轴正方向，竖直向下为 y 轴正方向, 请按照 (x1, y1) -> (x2, y2) 的形式输入走棋决策(用半角符号): ";
 
         std::getline(std::cin, input);
 

@@ -8,12 +8,12 @@ void CommandManager::execute(std::unique_ptr<Command> &&command) {
     history_.push_back(std::move(command));
 }
 
-void CommandManager::undo(int number) {
+bool CommandManager::undo(int number) {
     assert(number > 0 && "当用户选择悔棋时，命令管理器中传入的撤销命令个数应 > 0，代码逻辑出错");
 
     if (number > history_.size()) {
         std::cout << "已回到最初状态，无法继续悔棋" << std::endl;
-        return;
+        return false;
     }
 
     while (number) {
@@ -21,4 +21,6 @@ void CommandManager::undo(int number) {
         history_.pop_back();
         --number;
     }
+
+    return true;
 }

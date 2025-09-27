@@ -11,7 +11,7 @@ class CommandManager {
 
   public:
     void execute(std::unique_ptr<Command> &&command);
-    void undo(int number);
+    bool undo(int number);
 };
 
 #endif // CHINESECHESS_COMMAND_COMMANDMANAGER_H
