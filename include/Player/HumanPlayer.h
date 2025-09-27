@@ -7,7 +7,7 @@ class HumanPlayer : public Player {
   public:
     HumanPlayer(PlayerInfo player_info);
 
-    Position move_chess(GameContext &context) const override;
+    std::pair<ChessPiece *, Position> move_chess(GameContext &context) const override;
 
     ~HumanPlayer() = default;
 };

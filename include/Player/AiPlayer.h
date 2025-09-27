@@ -1,6 +1,7 @@
 #ifndef CHINESECHESS_PLAYER_AIPLAYER_H
 #define CHINESECHESS_PLAYER_AIPLAYER_H
 
+#include "Common/CoreType.h"
 #include "Player/Player.h"
 
 class AiPlayer : public Player {
@@ -9,10 +10,15 @@ class AiPlayer : public Player {
     constexpr static int MAX_SEARCH_DEPTH = 9;
     int search_depth_ = 6;
 
+  private:
+    int alpha_beta(int alpha, int beta, std::pair<ChessPiece *, Position> &move,
+                   GameContext &context, SideTag side_tag, int depth,
+                   SideTag current_side_tag) const;
+
   public:
     AiPlayer(PlayerInfo player_info);
 
-    Position move_chess(GameContext &context) const override;
+    std::pair<ChessPiece *, Position> move_chess(GameContext &context) const override;
 
     bool set_depth(int depth);
     int get_depth() const { return search_depth_; }
