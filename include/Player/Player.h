@@ -24,6 +24,12 @@ class Player {
     */
     // virtual Position move_chess(GameContext &context, ChessPiece *piece) const = 0;
 
+    /*
+        询问是否悔棋
+        返回值：true 悔棋，false 不悔棋
+    */
+    virtual bool ask_undo_request() const { return false; }
+
     virtual ~Player() = default;
 };
 

@@ -9,6 +9,8 @@ class HumanPlayer : public Player {
 
     std::pair<Position, Position> move_chess(GameContext &context) const override;
 
+    bool ask_undo_request() const override;
+
     ~HumanPlayer() = default;
 };
 
