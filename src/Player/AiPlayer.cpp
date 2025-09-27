@@ -10,3 +10,7 @@ bool AiPlayer::set_depth(int depth) {
 
     return true;
 }
+
+Position AiPlayer::move_chess(GameContext &context) const {
+
+}

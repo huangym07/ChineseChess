@@ -7,6 +7,7 @@
 #include "ChessPiece/StandardChineseChessConfig.h"
 #include "ChessPiece/PieceFactory.h"
 #include "Action/TraditionalAction.h"
+#include "Evaluator/StandardEvaluator.h"
 
 #include <cassert>
 #include <ctime>
@@ -18,12 +19,14 @@
 // 初始化棋子
 // 初始化棋盘
 // 初始化流程
+// 初始化评价器
 // 调用 context.action.run_game() 开始游戏流程
 void StandardPveMode::init(GameContext &context) const {
     init_players(context);
     init_pieces(context);
     init_board(context);
     init_action(context);
+    init_evaluator(context);
 
     context.action->run_game(context);
 }
@@ -85,4 +88,7 @@ void StandardPveMode::init_board(GameContext &context) const {
 }
 void StandardPveMode::init_action(GameContext &context) const {
     context.action = std::make_unique<TraditionalAction>();
+}
+void StandardPveMode::init_evaluator(GameContext &context) const {
+    context.evaluator = std::make_unique<StandardEvaluator>();
 }

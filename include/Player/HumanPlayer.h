@@ -7,7 +7,7 @@ class HumanPlayer : public Player {
   public:
     HumanPlayer(PlayerInfo player_info);
 
-    // TODO
+    Position move_chess(GameContext &context) const override;
 
     ~HumanPlayer() = default;
 };

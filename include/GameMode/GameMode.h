@@ -10,8 +10,7 @@ class GameMode {
     virtual void init_pieces(GameContext &context) const = 0;
     virtual void init_board(GameContext &context) const = 0;
     virtual void init_action(GameContext &context) const = 0;
-
-    // TODO
+    virtual void init_evaluator(GameContext &context) const = 0;
 
     virtual ~GameMode() = default;
 };

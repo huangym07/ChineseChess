@@ -12,7 +12,7 @@ class AiPlayer : public Player {
   public:
     AiPlayer(PlayerInfo player_info);
 
-    // TODO
+    Position move_chess(GameContext &context) const override;
 
     bool set_depth(int depth);
     int get_depth() const { return search_depth_; }

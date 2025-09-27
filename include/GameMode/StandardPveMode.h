@@ -12,8 +12,7 @@ class StandardPveMode : public GameMode {
     void init_pieces(GameContext &context) const override;
     void init_board(GameContext &context) const override;
     void init_action(GameContext &context) const override;
-
-    // TODO
+    void init_evaluator(GameContext &context) const override;
     
     ~StandardPveMode() = default;
   private:

@@ -6,6 +6,7 @@
 #include "ChessPiece/ChessPiece.h"
 #include "Command/CommandManager.h"
 #include "Common/CoreType.h"
+#include "Evaluator/Evaluator.h"
 #include "Player/Player.h"
 #include <memory>
 #include <vector>
@@ -16,6 +17,7 @@ struct GameContext {
     std::unique_ptr<ChessBoard> board;
     CommandManager cmd_manager;
     std::unique_ptr<Action> action;
+    std::unique_ptr<Evaluator> evaluator;
 
     const std::vector<std::unique_ptr<ChessPiece>> &get_pieces(SideTag side_tag) const;
 };
