@@ -18,15 +18,15 @@ bool AiPlayer::set_depth(int depth) {
     return true;
 }
 
-std::pair<ChessPiece *, Position> AiPlayer::move_chess(GameContext &context) const {
-    std::pair<ChessPiece *, Position> ret;
+std::pair<Position, Position> AiPlayer::move_chess(GameContext &context) const {
+    std::pair<Position, Position> ret;
 
     alpha_beta(std::numeric_limits<int>::min(), std::numeric_limits<int>::max(), ret, context,
                side_tag(), get_depth(), side_tag());
 
     return ret;
 }
-int AiPlayer::alpha_beta(int alpha, int beta, std::pair<ChessPiece *, Position> &move,
+int AiPlayer::alpha_beta(int alpha, int beta, std::pair<Position, Position> &move,
                          GameContext &context, SideTag side_tag, int depth,
                          SideTag current_side_tag) const {
     if (0 >= depth)
@@ -53,7 +53,7 @@ int AiPlayer::alpha_beta(int alpha, int beta, std::pair<ChessPiece *, Position> 
                 alpha = new_alpha;
 
                 if (get_depth() == depth) {
-                    move.first = piece;
+                    move.first = piece->pos();
                     move.second = target_pos;
                 }
             }

@@ -11,13 +11,13 @@ class TraditionalAction : public Action {
     bool is_checked(const GameContext &context, SideTag side_tag) const;
     /*
         返回值：true 合法，false 不合法
-        走棋前合法性判断，用于外界输入的（源坐标，目标坐标）的走棋，包含：
+        走棋前合法性判断，全面通用的走前合法性检测，包含：
         出界判断，源位置是否有与走棋方阵营一致的棋子，自占判断，棋子基本移动规则，棋子特殊移动规则
     */
     bool check_move_before(const GameContext &context, SideTag side_tag, Position src, Position target) const;
     /*
         返回值：true 合法，false 不合法
-        走棋前合法性判断，用于棋子自身生成的符合基本移动规则的走棋，包含：
+        走棋前合法性判断，专用于走法生成时棋子自身生成的符合基本移动规则的走棋，包含：
         出界判断，自占判断，棋子特殊移动规则
     */
     bool check_move_before(const GameContext &context, const ChessPiece *piece, Position target) const;

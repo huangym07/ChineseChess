@@ -11,14 +11,14 @@ class AiPlayer : public Player {
     int search_depth_ = 6;
 
   private:
-    int alpha_beta(int alpha, int beta, std::pair<ChessPiece *, Position> &move,
+    int alpha_beta(int alpha, int beta, std::pair<Position, Position> &move,
                    GameContext &context, SideTag side_tag, int depth,
                    SideTag current_side_tag) const;
 
   public:
     AiPlayer(PlayerInfo player_info);
 
-    std::pair<ChessPiece *, Position> move_chess(GameContext &context) const override;
+    std::pair<Position, Position> move_chess(GameContext &context) const override;
 
     bool set_depth(int depth);
     int get_depth() const { return search_depth_; }
