@@ -19,10 +19,15 @@ bool AiPlayer::set_depth(int depth) {
 }
 
 std::pair<Position, Position> AiPlayer::move_chess(GameContext &context) const {
+    std::cout << "AI 玩家走棋中..." << std::endl;
+
     std::pair<Position, Position> ret;
 
     alpha_beta(std::numeric_limits<int>::min(), std::numeric_limits<int>::max(), ret, context,
                side_tag(), get_depth(), side_tag());
+#ifndef NDEBUG
+    std::cerr << "AI 最优决策：" << ret.first << " -> " << ret.second << std::endl;
+#endif
 
     return ret;
 }

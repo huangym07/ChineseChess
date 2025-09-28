@@ -91,8 +91,9 @@ bool TraditionalAction::check_move_after(const GameContext &context, SideTag sid
     assert(generals.size() == 2 && "阵营只有两个，所以只应有两个将/帅");
 
     // 将帅不应照面
-    if (0 == board.count_straight_obstacles_between(generals[0]->pos(), generals[1]->pos()))
+    if (generals[0]->pos().y == generals[1]->pos().y && 0 == board.count_straight_obstacles_between(generals[0]->pos(), generals[1]->pos())) {
         return false;
+    }
 
     // 自毙判断：走棋后不得使走棋方阵营被将军
     if (is_checked(context, side_tag))
@@ -109,6 +110,8 @@ TraditionalAction::generate_all_valid_moves(GameContext &context, SideTag side_t
 
     const auto &pieces = context.get_pieces(side_tag);
     for (const auto &upiece : pieces) {
+        if (0 >= upiece->get_attribute(AttributeType::HP)) continue;
+
         ChessPiece *piece = upiece.get();
         auto moves = piece->basic_moves_gen(board);
 
@@ -157,6 +160,9 @@ void TraditionalAction::run_game(GameContext &context) const {
             auto [src_pos, target_pos] = player->move_chess(context);
             if (!check_move_before(context, player->side_tag(), src_pos, target_pos)) {
                 std::cout << "走棋不合法" << std::endl;
+#ifndef NDEBUG
+                std::cerr << "走棋前合法性检测失败" << std::endl;
+#endif
                 continue;
             }
 
@@ -165,9 +171,13 @@ void TraditionalAction::run_game(GameContext &context) const {
             if (!check_move_after(context, player->side_tag())) {
                 context.cmd_manager.undo(1);
                 std::cout << "走棋不合法" << std::endl;
+#ifndef NDEBUG
+                std::cerr << "走棋后合法性检测失败" << std::endl;
+#endif
                 continue;
             }
 
+            std::cout << "走棋成功: " << context.board->get_piece(target_pos)->display_info() << " " << src_pos << " -> " << target_pos << std::endl;
             break;
         }
 

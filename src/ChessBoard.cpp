@@ -112,7 +112,19 @@ bool ChessBoard::is_across_river(SideTag side_tag, Position pos) const {
 }
 
 void ChessBoard::show_board() const {
+    std::cout << '\n';
+
+    // 打印 x 轴
+    std::cout << "  ";
+    for (int j = 0; j < width_; ++j) {
+        std::cout << " " << j << "  ";
+    }
+    std::cout << '\n';
+
     for (int i = 0; i < height_; ++i) {
+        // 打印 y 轴
+        std::cout << i << " ";
+
         for (int j = 0; j < width_; ++j) {
             std::cout << (nullptr == board_[i][j] ? AnsiColor::colored_text(AnsiColor::RED, "  ")
                                                   : board_[i][j]->display_info())
@@ -124,9 +136,14 @@ void ChessBoard::show_board() const {
             std::cout << std::string(((2 * width_ - 1) * 2 - 8) / 2, ' ') << "楚河汉界\n\n";
         }
     }
+    std::cout << '\n' << std::endl;
 }
 
 int ChessBoard::count_straight_obstacles_between(Position start, Position end) const {
+#ifndef NDEBUG
+    if (start.x != end.x && start.y != end.y) 
+        std::cerr << __PRETTY_FUNCTION__ << ": " << start << " -> " << end << std::endl;
+#endif
     assert((start.x == end.x || start.y == end.y) && "检测直线上两点间（不含两点本身）的障碍物个数，传入参数应确保在一条直线上");
 
     int count = 0;

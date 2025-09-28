@@ -94,6 +94,8 @@ int StandardEvaluator::value(const GameContext &context, SideTag side_tag) const
 
     const auto &pieces = context.get_pieces(side_tag);
     for (const auto &upiece : pieces) {
+        if (0 >= upiece->get_attribute(AttributeType::HP)) continue;
+
         auto piece_type = upiece->piece_type();
         auto [x, y] = upiece->pos();
         ret += fixed_value_.find(piece_type)->second;
@@ -103,6 +105,8 @@ int StandardEvaluator::value(const GameContext &context, SideTag side_tag) const
 
     const auto &enemy_pieces = context.get_pieces(SideTag::RED == side_tag ? SideTag::BLACK : SideTag::RED);
     for (const auto &upiece : enemy_pieces) {
+        if (0 >= upiece->get_attribute(AttributeType::HP)) continue;
+
         auto piece_type = upiece->piece_type();
         auto [x, y] = upiece->pos();
         ret -= fixed_value_.find(piece_type)->second;

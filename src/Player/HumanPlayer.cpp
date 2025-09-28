@@ -35,11 +35,7 @@ bool HumanPlayer::ask_undo_request() const {
     // 默认不悔棋
     char op = 'n';
     while (std::cin >> op) {
-        if (op == 'y') {
-            std::cout << "已悔棋\n";
-            break;
-        } else if (op == 'n') {
-            std::cout << "不进行悔棋\n";
+        if (op == 'y' || op == 'n') {
             break;
         } else {
             std::cout << "输入有误, 请重新输入: ";
