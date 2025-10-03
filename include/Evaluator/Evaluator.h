@@ -8,6 +8,10 @@ class ChessPiece;
 
 class Evaluator {
   public:
+    /*
+        局面评估
+        功能：评估 side_tag 视角的棋局分数
+    */
     virtual int value(const GameContext &context, SideTag side_tag) const = 0;
 
     virtual ~Evaluator() = default;

@@ -9,15 +9,22 @@ class Player;
 
 class Action {
   public:
+    /*
+        开始游戏
+    */
     virtual void run_game(GameContext &context) const = 0;
 
-    // 为阵营 side_tag 生成全部合法走法
+    /*
+        全走法生成
+        功能：为阵营 side_tag 生成全部合法走法
+    */
     virtual std::vector<std::pair<ChessPiece*, Position>>
     generate_all_valid_moves(GameContext &context, SideTag side_tag) const = 0;
 
     /*
-        检测阵营 side_tag 是否失败
-        返回值：true side_tag 阵营游戏失败，false side_tag 阵营游戏未失败
+        游戏结束检测
+        功能：检测阵营 side_tag 是否失败
+        返回值：true - 失败，false - 未失败
     */
     virtual bool check_game_over(GameContext &context, SideTag side_tag) const = 0;
 

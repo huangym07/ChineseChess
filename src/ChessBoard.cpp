@@ -10,8 +10,8 @@ void ChessBoard::calculate_range() {
     assert(width_ >= 3 && height_ >= 2 && "棋盘过小不允许存在九宫和楚河汉界");
 
     // 楚河汉界
-    red_river = (height_ - 1) / 2;
-    black_river = height_ % 2 ? red_river : red_river + 1;
+    red_river_ = (height_ - 1) / 2;
+    black_river_ = height_ % 2 ? red_river_ : red_river_ + 1;
 
     // 九宫的 (x, y) 坐标
     // 九宫 x 范围占据棋盘的 1/3
@@ -19,25 +19,25 @@ void ChessBoard::calculate_range() {
     // 棋盘 x 范围被 3 除余 1 时，九宫左侧 x 范围 = 九宫 x 范围 = 九宫右侧 x 范围 - 1
     // 棋盘 x 范围被 3 除余 2 时，九宫左侧 x 范围 - 1 = 九宫 x 范围 = 九宫右侧 x 范围 - 1
     // 如 (棋盘 x 范围 -> 九宫 x 范围) [0, 8] -> [3, 5], [0, 9] -> [3, 5], [0, 10] -> [4, 6]
-    // 九宫 y 范围占据阵营 y (红方->[0, red_rive], 黑方->[black_river, black_river]) 的 1/2
+    // 九宫 y 范围占据阵营 y (红方->[0, red_rive], 黑方->[black_river_, black_river_]) 的 1/2
     // 阵营 y 不能被 2 整除时，九宫 y 范围占据更多一格的那一半
     // 如 (阵营 y -> 九宫 y) [0, 4] -> [0, 2], [0, 5] -> [0, 2], [0, 6] -> [0, 3]
 
     // nine palace x range
     int x_range = width_ / 3;
     // nine palace y range
-    // red_river - 0 + 1 是阵营长度
-    // (red_river - 0 + 1) + (2 - 1) 是为了利用整数除法自动向上取整
-    // 最终 (red_river + 2) / 2
-    int y_range = (red_river + 2) / 2;
+    // red_river_ - 0 + 1 是阵营长度
+    // (red_river_ - 0 + 1) + (2 - 1) 是为了利用整数除法自动向上取整
+    // 最终 (red_river_ + 2) / 2
+    int y_range = (red_river_ + 2) / 2;
 
     // nine palace left x
     int lx = width_ % 3 == 2 ? x_range + 1 : x_range;
     // nine palace right x
     int rx = lx + x_range - 1;
 
-    red_nine_palace = std::make_pair(Position{lx, 0}, Position{rx, y_range - 1});
-    black_nine_palace =
+    red_nine_palace_ = std::make_pair(Position{lx, 0}, Position{rx, y_range - 1});
+    black_nine_palace_ =
         std::make_pair(Position{lx, height_ - 1 - y_range + 1}, Position{rx, height_ - 1});
 }
 
@@ -87,12 +87,12 @@ ChessPiece *ChessBoard::get_piece(Position pos) const {
 bool ChessBoard::is_out_of_nine_palace(SideTag side_tag, Position pos) const {
     switch (side_tag) {
     case SideTag::RED: {
-        return pos.x > red_nine_palace.second.x || pos.x < red_nine_palace.first.x ||
-               pos.y < red_nine_palace.first.y || pos.y > red_nine_palace.second.y;
+        return pos.x > red_nine_palace_.second.x || pos.x < red_nine_palace_.first.x ||
+               pos.y < red_nine_palace_.first.y || pos.y > red_nine_palace_.second.y;
     }
     case SideTag::BLACK: {
-        return pos.x > black_nine_palace.second.x || pos.x < black_nine_palace.first.x ||
-               pos.y < black_nine_palace.first.y || pos.y > black_nine_palace.second.y;
+        return pos.x > black_nine_palace_.second.x || pos.x < black_nine_palace_.first.x ||
+               pos.y < black_nine_palace_.first.y || pos.y > black_nine_palace_.second.y;
     }
     default:
         assert(false && "传入未初始化的未知阵营枚举值");
@@ -101,10 +101,10 @@ bool ChessBoard::is_out_of_nine_palace(SideTag side_tag, Position pos) const {
 bool ChessBoard::is_across_river(SideTag side_tag, Position pos) const {
     switch (side_tag) {
     case SideTag::RED: {
-        return pos.y > red_river;
+        return pos.y > red_river_;
     }
     case SideTag::BLACK: {
-        return pos.y < black_river;
+        return pos.y < black_river_;
     }
     default:
         assert(false && "传入未初始化的未知阵营枚举值");

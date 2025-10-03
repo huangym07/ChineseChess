@@ -12,13 +12,16 @@
 #include <vector>
 
 struct GameContext {
-    std::map<SideTag, std::vector<std::unique_ptr<ChessPiece>>> pieces;
-    std::vector<std::unique_ptr<Player>> players;
-    std::unique_ptr<ChessBoard> board;
-    CommandManager cmd_manager;
-    std::unique_ptr<Action> action;
-    std::unique_ptr<Evaluator> evaluator;
+    std::map<SideTag, std::vector<std::unique_ptr<ChessPiece>>> pieces; // 棋子序列
+    std::vector<std::unique_ptr<Player>> players; // 玩家序列
+    std::unique_ptr<ChessBoard> board; // 棋盘
+    CommandManager cmd_manager; // 命令管理器
+    std::unique_ptr<Action> action; // 流程控制器
+    std::unique_ptr<Evaluator> evaluator; // 棋局评价器
 
+    /*
+        功能：根据阵营 side_tag 获取只读棋子序列
+    */
     const std::vector<std::unique_ptr<ChessPiece>> &get_pieces(SideTag side_tag) const;
 };
 

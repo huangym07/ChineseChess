@@ -6,7 +6,7 @@
 
 class StandardChineseChessConfig {
   private:
-    StandardChineseChessConfig() = default;
+    StandardChineseChessConfig() = delete;
 
   public:
     static constexpr int WIDTH = 9;

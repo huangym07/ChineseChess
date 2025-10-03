@@ -8,9 +8,14 @@ class AiPlayer : public Player {
   private:
     constexpr static int MIN_SEARCH_DEPTH = 1;
     constexpr static int MAX_SEARCH_DEPTH = 9;
-    int search_depth_ = 6;
+    int search_depth_ = 6; // 下面的 α-β 剪枝优化的 MiniMax 搜索的搜索深度
 
   private:
+    /*
+        α-β 剪枝优化的 MiniMax 搜索
+        功能：搜索出最佳走棋决策
+        参数：move 存储最佳走棋决策
+    */
     int alpha_beta(int alpha, int beta, std::pair<Position, Position> &move,
                    GameContext &context, SideTag side_tag, int depth,
                    SideTag current_side_tag) const;
@@ -18,6 +23,10 @@ class AiPlayer : public Player {
   public:
     AiPlayer(PlayerInfo player_info);
 
+    /*
+        玩家的走棋决策
+        功能：调用 alpha-beta，返回最佳走棋决策
+    */
     std::pair<Position, Position> move_chess(GameContext &context) const override;
 
     bool set_depth(int depth);
